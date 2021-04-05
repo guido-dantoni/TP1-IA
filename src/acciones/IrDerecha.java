@@ -1,5 +1,5 @@
 package acciones;
 
-public class IrDerecha {
 
+public class IrDerecha{
 }
