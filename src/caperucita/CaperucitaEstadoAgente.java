@@ -2,7 +2,7 @@ package caperucita;
 
 import frsf.cidisi.faia.agent.Perception;
 import frsf.cidisi.faia.agent.search.SearchBasedAgentState;
-import frsf.cidisi.faia.examples.search.pacman.PacmanAgentState;
+//import frsf.cidisi.faia.examples.search.pacman.PacmanAgentState;
 
 public class CaperucitaEstadoAgente extends SearchBasedAgentState {
 
