@@ -2,7 +2,7 @@ package caperucita;
 
 import frsf.cidisi.faia.agent.Perception;
 import frsf.cidisi.faia.agent.search.SearchBasedAgentState;
-import frsf.cidisi.faia.examples.search.pacman.PacmanAgentState;
+
 
 public class CaperucitaEstadoAgente extends SearchBasedAgentState {
 
@@ -110,6 +110,16 @@ public class CaperucitaEstadoAgente extends SearchBasedAgentState {
 
 	public void setInitialPosition(int[] initialPosition) {
 		this.initialPosition = initialPosition;
+	}
+
+	public int[][] getWorldPosicion() {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	public void recolectar(int x, int y) {
+		// TODO Auto-generated method stub
+		
 	}
 
 }
