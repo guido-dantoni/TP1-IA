@@ -11,7 +11,7 @@ public class IrIzquierda extends SearchAction {
 
 	@Override
 	public SearchBasedAgentState execute(SearchBasedAgentState s) {
-		// TODO Auto-generated method stub
+		
 		CaperucitaEstadoAgente caperucitaEstado = (CaperucitaEstadoAgente) s;
 
 		    int x = caperucitaEstado.getFilaPosicion();
