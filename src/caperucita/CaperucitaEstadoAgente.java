@@ -2,34 +2,49 @@ package caperucita;
 
 import frsf.cidisi.faia.agent.Perception;
 import frsf.cidisi.faia.agent.search.SearchBasedAgentState;
+import frsf.cidisi.faia.examples.search.pacman.PacmanAgentState;
 
 public class CaperucitaEstadoAgente extends SearchBasedAgentState {
 
     private int[][] world;
     private int[] posicion;
     private int[] initialPosition;
-    public static int vidas=3;
+	public static int vidas=3;
      
-	
-    public CaperucitaEstadoAgente(int[][] m, int row, int col) {
+    public CaperucitaEstadoAgente(int[][] m, int row, int col, int lifes) {
         world = m;
         posicion = new int[] {row, col};
         initialPosition = new int[2];
         initialPosition[0] = row;
         initialPosition[1] = col;
+        vidas=lifes;
         
     }
-    
+
 	@Override
 	public boolean equals(Object obj) {
 		// TODO Auto-generated method stub
 		return false;
 	}
 
+	//metodo para clonar el estado del agente
 	@Override
 	public SearchBasedAgentState clone() {
-		// TODO Auto-generated method stub
-		return null;
+		int[][] newWorld = new int [12][12];
+		
+		for(int fila=0; fila < world.length; fila++) {
+			for(int col=0; col < world.length; col++) {
+				newWorld[fila][col] = world[fila][col];
+			}
+		}
+		 int[] newPosition = new int[2];
+	        newPosition[0] = posicion[0];
+	        newPosition[1] = posicion[1];
+
+	        CaperucitaEstadoAgente newState = new CaperucitaEstadoAgente(newWorld,
+	        		this.getFilaPosicion(), this.getColumnaPosicion(), this.getVidas());
+
+	        return newState;
 	}
 
 	@Override
@@ -54,6 +69,16 @@ public class CaperucitaEstadoAgente extends SearchBasedAgentState {
 		return posicion;
 	}
 	
+	//obtener fila de la posicion
+	public int getFilaPosicion() {
+		return posicion[0];
+	}
+	
+	//obtener columna de la posicion
+	public int getColumnaPosicion() {
+		return posicion[1];
+	}
+	
 	public void setPosicionActual(int fila, int col) {
 		this.posicion[0]=fila;
 		this.posicion[1]=col;
@@ -69,6 +94,22 @@ public class CaperucitaEstadoAgente extends SearchBasedAgentState {
 			return true;
 		}
 		return false;
+	}
+	
+	public static int getVidas() {
+		return vidas;
+	}
+
+	public static void setVidas(int vidas) {
+		CaperucitaEstadoAgente.vidas = vidas;
+	}
+	
+	public int[] getInitialPosition() {
+		return initialPosition;
+	}
+
+	public void setInitialPosition(int[] initialPosition) {
+		this.initialPosition = initialPosition;
 	}
 
 }
