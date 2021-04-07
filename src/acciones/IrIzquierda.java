@@ -39,7 +39,22 @@ public class IrIzquierda extends SearchAction {
 
 	@Override
 	public EnvironmentState execute(AgentState ast, EnvironmentState est) {
-		// TODO Auto-generated method stub
+		/*CaperucitaEstadoAgente caperucitaEstado = (CaperucitaEstadoAgente) ast;
+		EnviromentState estadoAmbiente = (EnviromentState) est;
+
+	    int x = estadoAmbiente.getFilaPosicion();
+        int y = estadoAmbiente.getColumnaPosicion();
+
+
+        int[][] ambiente = caperucitaEstado.getWorldPosicion();
+        
+        while(ambiente[x][y-1] != CaperucitaPerception.ARBOL_PERCEPTION){
+        	if(ambiente[x][y] == CaperucitaPerception.FOOD_PERCEPTION){
+        		caperucitaEstado.recolectar(x,y);
+        	}
+        	caperucitaEstado.setPosicionActual(x,y-1);
+        	estadoAmbiente.setPositionCaperucita(new int[] {x, y-1});
+        }*/
 		return null;
 	}
 
