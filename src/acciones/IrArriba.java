@@ -18,7 +18,7 @@ public class IrArriba extends SearchAction {
 	        int y = caperucitaEstado.getColumnaPosicion();
 
 
-	        int[][] ambiente = caperucitaEstado.getWorldPosicion();
+	        int[][] ambiente = caperucitaEstado.getWorld();
 	        
 	        while(ambiente[x-1][y] != CaperucitaPerception.ARBOL_PERCEPTION){
 	        	if(ambiente[x][y] == CaperucitaPerception.FOOD_PERCEPTION){

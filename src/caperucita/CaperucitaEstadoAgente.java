@@ -112,14 +112,20 @@ public class CaperucitaEstadoAgente extends SearchBasedAgentState {
 		this.initialPosition = initialPosition;
 	}
 
-	public int[][] getWorldPosicion() {
-		// TODO Auto-generated method stub
-		return null;
-	}
+    public int[][] getWorld() {
+        return world;
+    }
+    
+    public int getWorldPosition(int row, int col) {
+        return world[row][col];
+    }
 
 	public void recolectar(int x, int y) {
 		// TODO Auto-generated method stub
 		
 	}
+    public void setWorldPosition(int row, int col, int value) {
+        this.world[row][col] = value;
+    }
 
 }
