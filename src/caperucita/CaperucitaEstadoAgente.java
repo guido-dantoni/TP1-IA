@@ -10,6 +10,7 @@ public class CaperucitaEstadoAgente extends SearchBasedAgentState {
     private int[] posicion;
     private int[] initialPosition;
 	public static int vidas=3;
+	public static int cant_dulces=0;
      
     public CaperucitaEstadoAgente(int[][] m, int row, int col, int lifes) {
         world = m;
@@ -121,7 +122,6 @@ public class CaperucitaEstadoAgente extends SearchBasedAgentState {
     }
 
 	public void recolectar(int x, int y) {
-		// TODO Auto-generated method stub
 		
 	}
     public void setWorldPosition(int row, int col, int value) {

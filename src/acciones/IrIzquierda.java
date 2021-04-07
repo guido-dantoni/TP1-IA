@@ -13,6 +13,7 @@ public class IrIzquierda extends SearchAction {
 	public SearchBasedAgentState execute(SearchBasedAgentState s) {
 		
 		CaperucitaEstadoAgente caperucitaEstado = (CaperucitaEstadoAgente) s;
+		Recolectar r = new Recolectar();
 
 		    int x = caperucitaEstado.getFilaPosicion();
 	        int y = caperucitaEstado.getColumnaPosicion();
@@ -22,7 +23,7 @@ public class IrIzquierda extends SearchAction {
 	        
 	        while(ambiente[x][y-1] != CaperucitaPerception.ARBOL_PERCEPTION){
 	        	if(ambiente[x][y] == CaperucitaPerception.FOOD_PERCEPTION){
-	        		caperucitaEstado.recolectar(x,y);
+	        		r.execute(caperucitaEstado);
 	        	}
 	        	caperucitaEstado.setPosicionActual(x,y-1);
 	        }

@@ -21,6 +21,7 @@ public class Recolectar extends SearchAction {
 	        if (estadoCaperucita.getWorldPosition(row, col) == CaperucitaPerception.FOOD_PERCEPTION) {
 	            // If the action is Eat, then the actual position has no more food.
 	            estadoCaperucita.setWorldPosition(row, col, CaperucitaPerception.EMPTY_PERCEPTION);
+	            CaperucitaEstadoAgente.cant_dulces++;
 	            return estadoCaperucita;
 	        }
 	        
