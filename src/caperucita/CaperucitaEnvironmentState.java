@@ -12,7 +12,10 @@ public class CaperucitaEnvironmentState extends EnvironmentState {
 
     private int[][] world;
     private int[] agentPosition;
- //   private int agentEnergy;
+    private int[] wolfPosition;
+    private int cantVidas;
+    private int cantDulces;
+
 
     public CaperucitaEnvironmentState(int[][] m) {
         world = m;
@@ -67,8 +70,12 @@ public class CaperucitaEnvironmentState extends EnvironmentState {
         
         
 
+
         this.setAgentPosition(new int[]{5, 11});
-//        this.setAgentEnergy(50);
+
+
+        this.setAgentPosition(new int[]{1, 1});
+
     }
 
     /**
@@ -112,43 +119,7 @@ public class CaperucitaEnvironmentState extends EnvironmentState {
     public void setAgentPosition(int[] agentPosition) {
         this.agentPosition = agentPosition;
     }
-/*
-    public int getAgentEnergy() {
-        return agentEnergy;
-    }
 
-    public void setAgentEnergy(int agentEnergy) {
-        this.agentEnergy = agentEnergy;
-    }
-
-    public int getTopCell(int row, int col) {
-        if (row == 0) {
-            return world[3][col];
-        }
-        return world[row - 1][col];
-    }
-
-    public int getLeftCell(int row, int col) {
-        if (col == 0) {
-            return world[row][3];
-        }
-        return world[row][col - 1];
-    }
-
-    public int getRightCell(int row, int col) {
-        if (col == 3) {
-            return world[row][0];
-        }
-        return world[row][col + 1];
-    }
-
-    public int getBottomCell(int row, int col) {
-        if (row == 3) {
-            return world[0][col];
-        }
-        return world[row + 1][col];
-    }
-*/
 
 	public int[] getTopCol(int row, int col) {
 		
@@ -197,4 +168,32 @@ public class CaperucitaEnvironmentState extends EnvironmentState {
 			}
 			return vector;
 	}
+
+
+	public int[] getWolfPosition() {
+		return wolfPosition;
+	}
+
+	public void setWolfPosition(int[] wolfPosition) {
+		this.wolfPosition = wolfPosition;
+	}
+
+	public int getCantVidas() {
+		return cantVidas;
+	}
+
+	public void setCantVidas(int cantVidas) {
+		this.cantVidas = cantVidas;
+	}
+
+	public int getCantDulces() {
+		return cantDulces;
+	}
+
+	public void setCantDulces(int cantDulces) {
+		this.cantDulces = cantDulces;
+	}
+    
+    
+
 }
