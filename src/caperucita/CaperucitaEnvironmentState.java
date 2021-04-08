@@ -9,7 +9,9 @@ public class CaperucitaEnvironmentState extends EnvironmentState {
 
     private int[][] world;
     private int[] agentPosition;
-    private int agentEnergy;
+    private int[] wolfPosition;
+    private int cantVidas;
+    private int cantDulces;
 
     public CaperucitaEnvironmentState(int[][] m) {
         world = m;
