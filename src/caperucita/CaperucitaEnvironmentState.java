@@ -44,7 +44,6 @@ public class CaperucitaEnvironmentState extends EnvironmentState {
         world[1][2] = CaperucitaPerception.FOOD_PERCEPTION;
 
         this.setAgentPosition(new int[]{1, 1});
-        this.setAgentEnergy(50);
     }
 
     /**
@@ -89,14 +88,6 @@ public class CaperucitaEnvironmentState extends EnvironmentState {
         this.agentPosition = agentPosition;
     }
 
-    public int getAgentEnergy() {
-        return agentEnergy;
-    }
-
-    public void setAgentEnergy(int agentEnergy) {
-        this.agentEnergy = agentEnergy;
-    }
-
     public int getTopCell(int row, int col) {
         if (row == 0) {
             return world[3][col];
@@ -124,4 +115,30 @@ public class CaperucitaEnvironmentState extends EnvironmentState {
         }
         return world[row + 1][col];
     }
+
+	public int[] getWolfPosition() {
+		return wolfPosition;
+	}
+
+	public void setWolfPosition(int[] wolfPosition) {
+		this.wolfPosition = wolfPosition;
+	}
+
+	public int getCantVidas() {
+		return cantVidas;
+	}
+
+	public void setCantVidas(int cantVidas) {
+		this.cantVidas = cantVidas;
+	}
+
+	public int getCantDulces() {
+		return cantDulces;
+	}
+
+	public void setCantDulces(int cantDulces) {
+		this.cantDulces = cantDulces;
+	}
+    
+    
 }
