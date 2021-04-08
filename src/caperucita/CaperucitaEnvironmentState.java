@@ -1,7 +1,5 @@
 package caperucita;
 
-import java.awt.List;
-import java.util.ArrayList;
 
 import frsf.cidisi.faia.state.EnvironmentState;
 
@@ -13,6 +11,7 @@ public class CaperucitaEnvironmentState extends EnvironmentState {
     private int[][] world;
     private int[] agentPosition;
     private int[] wolfPosition;
+    private int [] positionDulces;
     private int cantVidas;
     private int cantDulces;
 
@@ -194,6 +193,12 @@ public class CaperucitaEnvironmentState extends EnvironmentState {
 		this.cantDulces = cantDulces;
 	}
     
-    
+	public int[] getPositionDulces() {
+		return positionDulces;
+	}
+
+	public void setPositionDulces(int[] positionDulces) {
+		this.positionDulces = positionDulces;
+	}
 
 }
