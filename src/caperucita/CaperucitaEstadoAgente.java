@@ -43,7 +43,7 @@ public class CaperucitaEstadoAgente extends SearchBasedAgentState {
 	        newPosition[1] = posicion[1];
 
 	        CaperucitaEstadoAgente newState = new CaperucitaEstadoAgente(newWorld,
-	        		this.getFilaPosicion(), this.getColumnaPosicion(), this.getVidas());
+	        		this.getFilaPosicion(), this.getColumnaPosicion(), CaperucitaEstadoAgente.getVidas());
 
 	        return newState;
 	}
@@ -86,7 +86,7 @@ public class CaperucitaEstadoAgente extends SearchBasedAgentState {
 	}
 	
 	//metodo para saber si la posicion actual del agente es la salida
-	public boolean isExit() {
+/*	public boolean isExit() {
 		// HACER
 		Bosque b = new Bosque();
 		int[] salida = b.getSalida();
@@ -96,7 +96,7 @@ public class CaperucitaEstadoAgente extends SearchBasedAgentState {
 		}
 		return false;
 	}
-	
+*/	
 	public static int getVidas() {
 		return vidas;
 	}

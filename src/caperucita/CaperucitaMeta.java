@@ -8,7 +8,9 @@ public class CaperucitaMeta extends GoalTest{
 	@Override
 	public boolean isGoalState(AgentState agentState) {
 
-		if(((CaperucitaEstadoAgente) agentState).isExit()){
+		int fila = ((CaperucitaEstadoAgente) agentState).getFilaPosicion();
+		int col = ((CaperucitaEstadoAgente) agentState).getColumnaPosicion() ;
+		if(((CaperucitaEstadoAgente) agentState).getWorldPosition(fila, col)==CaperucitaPerception.SALIDA){
 			return true;
 		}
 		
