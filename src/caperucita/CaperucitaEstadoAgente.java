@@ -11,6 +11,8 @@ public class CaperucitaEstadoAgente extends SearchBasedAgentState {
     private int[] initialPosition;
 	public static int vidas=3;
 	public static int cant_dulces=0;
+	public static final int TAM = CaperucitaEnvironmentState.TAM;
+	
      
     public CaperucitaEstadoAgente(int[][] m, int row, int col, int lifes) {
         world = m;
@@ -20,6 +22,12 @@ public class CaperucitaEstadoAgente extends SearchBasedAgentState {
         initialPosition[1] = col;
         vidas=lifes;
         
+    }
+    
+    public CaperucitaEstadoAgente() {
+        world = new int[TAM][TAM];
+        initialPosition = new int[2];
+        this.initState();
     }
 
 	@Override
@@ -31,7 +39,7 @@ public class CaperucitaEstadoAgente extends SearchBasedAgentState {
 	//metodo para clonar el estado del agente
 	@Override
 	public SearchBasedAgentState clone() {
-		int[][] newWorld = new int [12][12];
+		int[][] newWorld = new int [TAM][TAM];
 		
 		for(int fila=0; fila < world.length; fila++) {
 			for(int col=0; col < world.length; col++) {
@@ -62,7 +70,13 @@ public class CaperucitaEstadoAgente extends SearchBasedAgentState {
 
 	@Override
 	public void initState() {
-		// TODO Auto-generated method stub
+		
+		//ESTO NOSE SI SERA ASI.... ********************************************************************
+		
+		CaperucitaEnvironmentState estadoAmbiente = new CaperucitaEnvironmentState();
+		estadoAmbiente.initState();
+		this.setWorld(estadoAmbiente.getWorld());
+		this.setInitialPosition(estadoAmbiente.getAgentPosition());
 		
 	}
 	
@@ -120,7 +134,11 @@ public class CaperucitaEstadoAgente extends SearchBasedAgentState {
     public int getWorldPosition(int row, int col) {
         return world[row][col];
     }
-
+    
+    public void setWorld(int[][] w) {
+    	this.world = w;
+    }
+    
 	public void recolectar(int x, int y) {
 		
 	}

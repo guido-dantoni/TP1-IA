@@ -14,6 +14,7 @@ public class CaperucitaEnvironmentState extends EnvironmentState {
     private int [] positionDulces;
     private int cantVidas;
     private int cantDulces;
+    public static final int TAM=14;
 
 
     public CaperucitaEnvironmentState(int[][] m) {
@@ -21,7 +22,7 @@ public class CaperucitaEnvironmentState extends EnvironmentState {
     }
 
     public CaperucitaEnvironmentState() {
-        world = new int[12][12];
+        world = new int[TAM][TAM];
         this.initState();
     }
 
@@ -40,7 +41,7 @@ public class CaperucitaEnvironmentState extends EnvironmentState {
 
         
         /* Sets some cells with foods and enemies. */
-        for(int i=0; i<14; i++) {
+        for(int i=0; i<TAM; i++) {
         	world[0][i]= CaperucitaPerception.ARBOL_PERCEPTION;
         	world[i][0]=CaperucitaPerception.ARBOL_PERCEPTION;
         	world[i][1]=CaperucitaPerception.ARBOL_PERCEPTION;
@@ -71,9 +72,6 @@ public class CaperucitaEnvironmentState extends EnvironmentState {
 
 
         this.setAgentPosition(new int[]{5, 11});
-
-
-        this.setAgentPosition(new int[]{1, 1});
 
     }
 
@@ -122,7 +120,7 @@ public class CaperucitaEnvironmentState extends EnvironmentState {
 
 	public int[] getTopCol(int row, int col) {
 		
-		int vector[]  = new int[14];
+		int vector[]  = new int[TAM];
 		int i=0;
 	
 			while(world[row-1][col] != CaperucitaPerception.ARBOL_PERCEPTION) {
@@ -135,7 +133,7 @@ public class CaperucitaEnvironmentState extends EnvironmentState {
 
 	public int[] getLeftRow(int row, int col) {
 		
-		int vector[]  = new int[14];
+		int vector[]  = new int[TAM];
 		int i=0;
 	
 			while(world[row][col-1] != CaperucitaPerception.ARBOL_PERCEPTION) {
@@ -146,7 +144,7 @@ public class CaperucitaEnvironmentState extends EnvironmentState {
 	}
 
 	public int[] getRightRow(int row, int col) {
-		int vector[]  = new int[14];
+		int vector[]  = new int[TAM];
 		int i=0;
 	
 			while(world[row][col+1] != CaperucitaPerception.ARBOL_PERCEPTION) {
@@ -158,7 +156,7 @@ public class CaperucitaEnvironmentState extends EnvironmentState {
 
 	public int[] getBottomCol(int row, int col) {
 		
-		int vector[]  = new int[14];
+		int vector[]  = new int[TAM];
 		int i=0;
 	
 			while(world[row+1][col] != CaperucitaPerception.ARBOL_PERCEPTION) {
