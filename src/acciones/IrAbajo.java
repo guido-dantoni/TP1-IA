@@ -24,6 +24,10 @@ public class IrAbajo extends SearchAction {
         	if(ambiente[x][y] == CaperucitaPerception.FOOD_PERCEPTION){
         		r.execute(caperucitaEstado);
         	}
+        	if(ambiente[x][y] == CaperucitaPerception.ENEMY_PERCEPTION) {
+        		int[] i = {x,y};
+        		caperucitaEstado.setWolfPosition(i);
+        	}
         	caperucitaEstado.setPosicionActual(x+1,y);
         }
         
