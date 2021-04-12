@@ -9,6 +9,7 @@ public class CaperucitaEstadoAgente extends SearchBasedAgentState {
     private int[][] world;
     private int[] posicion;
     private int[] initialPosition;
+    private int[] wolfPosition;
     public static int cantVidas=3;
     public static int cantDulces=0;
 	public static final int TAM = CaperucitaEnvironmentState.TAM;
@@ -77,6 +78,8 @@ public class CaperucitaEstadoAgente extends SearchBasedAgentState {
 		estadoAmbiente.initState();
 		this.setWorld(estadoAmbiente.getWorld());
 		this.setInitialPosition(estadoAmbiente.getAgentPosition());
+		this.setWolfPosition(estadoAmbiente.getWolfPosition());
+		
 		
 	}
 	
@@ -145,5 +148,13 @@ public class CaperucitaEstadoAgente extends SearchBasedAgentState {
     public void setWorldPosition(int row, int col, int value) {
         this.world[row][col] = value;
     }
+    
+	public int[] getWolfPosition() {
+		return wolfPosition;
+	}
+
+	public void setWolfPosition(int[] wolfPosition) {
+		this.wolfPosition = wolfPosition;
+	}
 
 }

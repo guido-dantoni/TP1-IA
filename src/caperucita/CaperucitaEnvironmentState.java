@@ -33,8 +33,8 @@ public class CaperucitaEnvironmentState extends EnvironmentState {
     public void initState() {
 
         // Sets all cells as empty
-        for (int row = 0; row < world.length; row++) {
-            for (int col = 0; col < world.length; col++) {
+        for (int row = 0; row < TAM; row++) {
+            for (int col = 0; col < TAM; col++) {
                 world[row][col] = CaperucitaPerception.EMPTY_PERCEPTION;
             }
         }
