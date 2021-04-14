@@ -1,5 +1,8 @@
 package acciones;
 
+import java.util.Arrays;
+
+import caperucita.CaperucitaEnvironmentState;
 import caperucita.CaperucitaEstadoAgente;
 import caperucita.CaperucitaPerception;
 import frsf.cidisi.faia.agent.search.SearchAction;
@@ -46,23 +49,41 @@ public class IrArriba extends SearchAction {
 
 	@Override
 	public EnvironmentState execute(AgentState ast, EnvironmentState est) {
-		/*CaperucitaEstadoAgente caperucitaEstado = (CaperucitaEstadoAgente) ast;
-		EnviromentState estadoAmbiente = (EnviromentState) est;
+		CaperucitaEstadoAgente caperucitaEstado = (CaperucitaEstadoAgente) ast;
+		CaperucitaEnvironmentState estadoAmbiente = (CaperucitaEnvironmentState) est;
+		
+		int[] pos = estadoAmbiente.getAgentPosition();
+	    int x = pos[0];
+        int y = pos[1];
 
-	    int x = estadoAmbiente.getFilaPosicion();
-        int y = estadoAmbiente.getColumnaPosicion();
 
-
-        int[][] ambiente = caperucitaEstado.getWorldPosicion();
+        int[][] ambiente = estadoAmbiente.getWorld();
         
-        while(ambiente[x-1][y] != CaperucitaPerception.ARBOL_PERCEPTION){
-        	if(ambiente[x][y] == CaperucitaPerception.FOOD_PERCEPTION){
-        		caperucitaEstado.recolectar(x,y);
-        	}
-        	caperucitaEstado.setPosicionActual(x-1,y);
-        	estadoAmbiente.setPositionCaperucita(new int[] {x-1, y});
-        }*/
-		return null;
+        while(ambiente[x+1][y] != CaperucitaPerception.ARBOL_PERCEPTION){
+        	estadoAmbiente.setAgentPosition(new int[] {x-1, y});
+        }
+        
+        int filaLobo=0;
+        int columnaLobo=0;
+        
+        while(ambiente[filaLobo][columnaLobo] == CaperucitaPerception.ARBOL_PERCEPTION ||
+        		ambiente[filaLobo][columnaLobo] == CaperucitaPerception.FOOD_PERCEPTION ||
+        		ambiente[filaLobo][columnaLobo] == CaperucitaPerception.SALIDA) {
+        	
+	        filaLobo = (int) (Math.random() * CaperucitaEnvironmentState.TAM -1);
+	        columnaLobo = (int) (Math.random() * CaperucitaEnvironmentState.TAM -1);
+        }
+        
+        estadoAmbiente.setWorld(estadoAmbiente.getWolfPosition()[0], estadoAmbiente.getWolfPosition()[1], CaperucitaPerception.EMPTY_PERCEPTION);
+        estadoAmbiente.setWolfPosition(new int []{filaLobo, columnaLobo});
+        
+        if(Arrays.equals(estadoAmbiente.getWolfPosition(),caperucitaEstado.getPosicionActual())) {
+        	
+        	CaperucitaEstadoAgente.cantVidas--;
+        	caperucitaEstado.setPosicionActual(caperucitaEstado.getInitialPosition()[0], caperucitaEstado.getInitialPosition()[1]);
+        }
+        
+		return estadoAmbiente;
 	}
 
 	@Override

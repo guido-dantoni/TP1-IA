@@ -8,7 +8,6 @@ import acciones.IrAbajo;
 import acciones.IrArriba;
 import acciones.IrDerecha;
 import acciones.IrIzquierda;
-import acciones.Recolectar;
 import frsf.cidisi.faia.agent.Action;
 import frsf.cidisi.faia.agent.Perception;
 import frsf.cidisi.faia.agent.search.Problem;
@@ -32,7 +31,6 @@ class CaperucitaAgente extends SearchBasedAgent {
 
         // Create the operators
         Vector<SearchAction> operators = new Vector<SearchAction>();
-        operators.addElement(new Recolectar());
 
         operators.addElement(new IrArriba());
         operators.addElement(new IrAbajo());

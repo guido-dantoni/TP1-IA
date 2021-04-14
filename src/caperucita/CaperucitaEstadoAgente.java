@@ -78,6 +78,7 @@ public class CaperucitaEstadoAgente extends SearchBasedAgentState {
 		estadoAmbiente.initState();
 		this.setWorld(estadoAmbiente.getWorld());
 		this.setInitialPosition(estadoAmbiente.getAgentPosition());
+		this.setPosicionActual(this.getInitialPosition()[0],this.getInitialPosition()[1]) ;
 		this.setWolfPosition(estadoAmbiente.getWolfPosition());
 		
 		
