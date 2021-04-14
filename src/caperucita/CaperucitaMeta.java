@@ -10,7 +10,8 @@ public class CaperucitaMeta extends GoalTest{
 
 		int fila = ((CaperucitaEstadoAgente) agentState).getFilaPosicion();
 		int col = ((CaperucitaEstadoAgente) agentState).getColumnaPosicion() ;
-		if(((CaperucitaEstadoAgente) agentState).getWorldPosition(fila, col)==CaperucitaPerception.SALIDA){
+		if(((CaperucitaEstadoAgente) agentState).getWorldPosition(fila, col)==CaperucitaPerception.SALIDA &&
+				CaperucitaEstadoAgente.getVidas() >= 1){
 			return true;
 		}
 		

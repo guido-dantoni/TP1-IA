@@ -13,7 +13,6 @@ public class IrArriba extends SearchAction {
 	public SearchBasedAgentState execute(SearchBasedAgentState s) {
 		
 			CaperucitaEstadoAgente caperucitaEstado = (CaperucitaEstadoAgente) s;
-			Recolectar r = new Recolectar();
 
 		    int x = caperucitaEstado.getFilaPosicion();
 	        int y = caperucitaEstado.getColumnaPosicion();
@@ -23,17 +22,19 @@ public class IrArriba extends SearchAction {
 	        
 	        while(ambiente[x-1][y] != CaperucitaPerception.ARBOL_PERCEPTION){
 	        	if(ambiente[x][y] == CaperucitaPerception.FOOD_PERCEPTION){
-	        		r.execute(caperucitaEstado);
+	        		caperucitaEstado.setWorldPosition(x, y, CaperucitaPerception.EMPTY_PERCEPTION);
+		            CaperucitaEstadoAgente.cantDulces++;
 	        	}
 	        	if(ambiente[x][y] == CaperucitaPerception.ENEMY_PERCEPTION) {
 	        		int[] i = {x,y};
 	        		caperucitaEstado.setWolfPosition(i);
+	        		return null;
 	        	}
 	        	caperucitaEstado.setPosicionActual(x-1,y);
 	        }
 	        
 	        
-			return null;
+			return caperucitaEstado;
 	
 	}
 

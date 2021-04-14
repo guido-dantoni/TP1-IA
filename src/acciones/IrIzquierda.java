@@ -13,27 +13,29 @@ public class IrIzquierda extends SearchAction {
 	public SearchBasedAgentState execute(SearchBasedAgentState s) {
 		
 		CaperucitaEstadoAgente caperucitaEstado = (CaperucitaEstadoAgente) s;
-		Recolectar r = new Recolectar();
 
 		    int x = caperucitaEstado.getFilaPosicion();
 	        int y = caperucitaEstado.getColumnaPosicion();
 
 
 	        int[][] ambiente = caperucitaEstado.getWorld();
+	        	        
+		        while(ambiente[x][y-1] != CaperucitaPerception.ARBOL_PERCEPTION){
+		        	if(ambiente[x][y] == CaperucitaPerception.FOOD_PERCEPTION){
+		        		caperucitaEstado.setWorldPosition(x, y, CaperucitaPerception.EMPTY_PERCEPTION);
+			            CaperucitaEstadoAgente.cantDulces++;
+		        	}
+		        	if(ambiente[x][y] == CaperucitaPerception.ENEMY_PERCEPTION) {
+		        		int[] i = {x,y};
+		        		caperucitaEstado.setWolfPosition(i);
+		        		return null;
+		        	}
+		        	caperucitaEstado.setPosicionActual(x,y-1);
+		        }
 	        
-	        while(ambiente[x][y-1] != CaperucitaPerception.ARBOL_PERCEPTION){
-	        	if(ambiente[x][y] == CaperucitaPerception.FOOD_PERCEPTION){
-	        		r.execute(caperucitaEstado);
-	        	}
-	        	if(ambiente[x][y] == CaperucitaPerception.ENEMY_PERCEPTION) {
-	        		int[] i = {x,y};
-	        		caperucitaEstado.setWolfPosition(i);
-	        	}
-	        	caperucitaEstado.setPosicionActual(x,y-1);
-	        }
+	        return caperucitaEstado;
 	        
-	        return null;
-	}
+	 }
 
 	@Override
 	public Double getCost() {
