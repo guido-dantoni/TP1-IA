@@ -78,10 +78,10 @@ public class IrIzquierda extends SearchAction {
         
         if(Arrays.equals(estadoAmbiente.getWolfPosition(),caperucitaEstado.getPosicionActual())) {
         	
-        	CaperucitaEstadoAgente.cantVidas--;
+        	CaperucitaEstadoAgente.cantVidas--;        
         	caperucitaEstado.setPosicionActual(caperucitaEstado.getInitialPosition()[0], caperucitaEstado.getInitialPosition()[1]);
+      
         }
-        
 		return estadoAmbiente;
 		
 	}

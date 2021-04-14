@@ -1,8 +1,10 @@
 package caperucita;
 
+import frsf.cidisi.faia.agent.Action;
 import frsf.cidisi.faia.agent.Agent;
 import frsf.cidisi.faia.agent.Perception;
 import frsf.cidisi.faia.environment.Environment;
+
 
 
 
@@ -40,6 +42,21 @@ public class Bosque extends Environment{
         // Return the perception
         return perception;
 	}
+    @Override
+    public boolean agentFailed(Action actionReturned) {
+
+    	CaperucitaEnvironmentState caperucitaEnvironmentState =
+                this.getEnvironmentState();
+
+        int vidas = caperucitaEnvironmentState.getCantVidas();
+
+        // FIXME: The caperucita agent always has the same life
+        // If the agent has no life, he failed
+        if (vidas <= 0) {
+            return true;
+        }
+        return false;
+    }
 
 	public int[] getSalida() {
 		return salida;
