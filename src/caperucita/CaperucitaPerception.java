@@ -77,5 +77,21 @@ public class CaperucitaPerception extends Perception{
 	public void setBottomSensor(int[] bottomSensor) {
 		this.bottomSensor = bottomSensor;
 	}
+	
+   
+    @Override
+    public String toString() {
+        StringBuffer str = new StringBuffer();
+
+        str.append("Left Sensor: " + this.leftSensor);
+        str.append("; ");
+        str.append("Up Sensor: " + this.topSensor);
+        str.append("; ");
+        str.append("Right Sensor: " + this.rightSensor);
+        str.append("; ");
+        str.append("Down Sensor: " + this.bottomSensor);
+
+        return str.toString();
+    }
 
 }

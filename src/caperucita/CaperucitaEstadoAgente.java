@@ -59,7 +59,52 @@ public class CaperucitaEstadoAgente extends SearchBasedAgentState {
 
 	@Override
 	public void updateState(Perception p) {
-		// TODO Auto-generated method stub
+		CaperucitaPerception caperucitaPerception = (CaperucitaPerception) p;
+//VER EN CONSULTA SI ESTA BIEN	
+		
+		//izquierda
+		int row = this.getFilaPosicion();
+		int col = this.getColumnaPosicion();
+		
+		int i=1;
+	
+			while(world[row][col-i] != CaperucitaPerception.ARBOL_PERCEPTION) {
+				world[row][col-i]=caperucitaPerception.getLeftSensor()[i];
+				i++;
+			}
+			
+		//derecha	
+		row = this.getFilaPosicion();
+		col = this.getColumnaPosicion();
+		i=1;
+		
+		while(world[row][col+i] != CaperucitaPerception.ARBOL_PERCEPTION) {
+			world[row][col+i]=caperucitaPerception.getRightSensor()[i];
+			i++;
+		}
+		
+		//arriba
+		row = this.getFilaPosicion();
+		col = this.getColumnaPosicion();
+		i=1;
+		
+		while(world[row-i][col] != CaperucitaPerception.ARBOL_PERCEPTION) {
+			world[row-i][col]=caperucitaPerception.getTopSensor()[i];
+			i++;
+		}
+		
+		//abajo	
+		row = this.getFilaPosicion();
+		col = this.getColumnaPosicion();
+		i=1;
+			
+		while(world[row+i][col] != CaperucitaPerception.ARBOL_PERCEPTION) {
+			world[row+i][col]=caperucitaPerception.getBottomSensor()[i];
+			i++;
+		}
+		
+		cantVidas=CaperucitaEstadoAgente.getVidas();
+		wolfPosition=this.getWolfPosition();
 		
 	}
 
@@ -103,18 +148,6 @@ public class CaperucitaEstadoAgente extends SearchBasedAgentState {
 		this.posicion[1]=col;
 	}
 	
-	//metodo para saber si la posicion actual del agente es la salida
-/*	public boolean isExit() {
-		// HACER
-		Bosque b = new Bosque();
-		int[] salida = b.getSalida();
-		
-		if (salida[0]== posicion[0] && salida[1]== posicion[1]) {
-			return true;
-		}
-		return false;
-	}
-*/	
 	public static int getVidas() {
 		return cantVidas;
 	}
