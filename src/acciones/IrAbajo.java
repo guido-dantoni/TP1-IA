@@ -43,8 +43,8 @@ public class IrAbajo extends SearchAction {
 
 	@Override
 	public Double getCost() {
-		// TODO Auto-generated method stub
-		return null;
+		
+		return 1.0;
 	}
 
 	@Override
@@ -56,19 +56,18 @@ public class IrAbajo extends SearchAction {
 	    int x = pos[0];
         int y = pos[1];
 
-
+        //desplazamiento de caperucita
         int[][] ambiente = estadoAmbiente.getWorld();
         
         while(ambiente[x+1][y] != CaperucitaPerception.ARBOL_PERCEPTION){
         	estadoAmbiente.setAgentPosition(new int[] {x+1, y});
         }
         
+      //desplazamiento aleatorio del lobo en posicion vacia o donde esta caperucita
         int filaLobo=0;
         int columnaLobo=0;
         
-        while(ambiente[filaLobo][columnaLobo] == CaperucitaPerception.ARBOL_PERCEPTION ||
-        		ambiente[filaLobo][columnaLobo] == CaperucitaPerception.FOOD_PERCEPTION ||
-        		ambiente[filaLobo][columnaLobo] == CaperucitaPerception.SALIDA) {
+        while(!(ambiente[filaLobo][columnaLobo] == CaperucitaPerception.EMPTY_PERCEPTION)){
         	
 	        filaLobo = (int) (Math.random() * CaperucitaEnvironmentState.TAM -1);
 	        columnaLobo = (int) (Math.random() * CaperucitaEnvironmentState.TAM -1);
@@ -77,6 +76,7 @@ public class IrAbajo extends SearchAction {
         estadoAmbiente.setWorld(estadoAmbiente.getWolfPosition()[0], estadoAmbiente.getWolfPosition()[1], CaperucitaPerception.EMPTY_PERCEPTION);
         estadoAmbiente.setWolfPosition(new int []{filaLobo, columnaLobo});
         
+        //si el lobo cae en l posicion de caperucita se la morfa y capeucita arranca en la pos inicial
         if(Arrays.equals(estadoAmbiente.getWolfPosition(),caperucitaEstado.getPosicionActual())) {
         	
         	CaperucitaEstadoAgente.cantVidas--;

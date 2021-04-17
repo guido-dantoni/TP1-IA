@@ -33,9 +33,16 @@ public class CaperucitaEstadoAgente extends SearchBasedAgentState {
 
 	@Override
 	public boolean equals(Object obj) {
-		// TODO Auto-generated method stub
-		return false;
+		
+		boolean fila = ((CaperucitaEstadoAgente) obj).getFilaPosicion() == this.getFilaPosicion();
+		boolean col = ((CaperucitaEstadoAgente) obj).getColumnaPosicion() == this.getColumnaPosicion();
+		boolean vidas = ((CaperucitaEstadoAgente) obj).getVidas() == this.getVidas();
+		boolean comida = ((CaperucitaEstadoAgente) obj).getCantDulces() == this.getCantDulces();
+		
+		return (fila && col && vidas && comida);
 	}
+
+
 
 	//metodo para clonar el estado del agente
 	@Override
@@ -61,7 +68,7 @@ public class CaperucitaEstadoAgente extends SearchBasedAgentState {
 	public void updateState(Perception p) {
 		CaperucitaPerception caperucitaPerception = (CaperucitaPerception) p;
 //VER EN CONSULTA SI ESTA BIEN	
-		
+	/*	
 		//izquierda
 		int row = this.getFilaPosicion();
 		int col = this.getColumnaPosicion();
@@ -101,7 +108,7 @@ public class CaperucitaEstadoAgente extends SearchBasedAgentState {
 		while(world[row+i][col] != CaperucitaPerception.ARBOL_PERCEPTION) {
 			world[row+i][col]=caperucitaPerception.getBottomSensor()[i];
 			i++;
-		}
+		}*/
 		
 		cantVidas=CaperucitaEstadoAgente.getVidas();
 		wolfPosition=this.getWolfPosition();
@@ -189,6 +196,11 @@ public class CaperucitaEstadoAgente extends SearchBasedAgentState {
 
 	public void setWolfPosition(int[] wolfPosition) {
 		this.wolfPosition = wolfPosition;
+	}
+	
+	public static int getCantDulces() {
+		
+		return cantDulces;
 	}
 
 }
