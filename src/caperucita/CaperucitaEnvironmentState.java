@@ -83,9 +83,9 @@ public class CaperucitaEnvironmentState extends EnvironmentState {
         String str = "";
 
         str = str + "[ \n";
-        for (int row = 0; row < world.length; row++) {
+        for (int row = 0; row < TAM; row++) {
             str = str + "[ ";
-            for (int col = 0; col < world.length; col++) {
+            for (int col = 0; col < TAM; col++) {
                 str = str + world[row][col] + " ";
             }
             str = str + " ]\n";
