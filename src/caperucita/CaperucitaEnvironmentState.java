@@ -12,8 +12,8 @@ public class CaperucitaEnvironmentState extends EnvironmentState {
     private int[] agentPosition;
     private int[] wolfPosition;
     private int [] positionDulces;
-    private int cantVidas;
-    private int cantDulces;
+    public static int cantVidas=3;
+    public static int cantDulces=3;
     public static final int TAM=14;
 
 

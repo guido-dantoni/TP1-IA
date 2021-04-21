@@ -32,17 +32,31 @@ public class CaperucitaPerception extends Perception{
 
 	@Override
 	public void initPerception(Agent agent, Environment environment) {
-		CaperucitaAgente caperucitaAgent = (CaperucitaAgente) agent;
-        Bosque caperucitaBosque = (Bosque) environment;
-        CaperucitaEnvironmentState environmentState = (CaperucitaEnvironmentState) caperucitaBosque.getEnvironmentState();
+		Bosque caperucitaBosque = (Bosque) environment;
+        CaperucitaEnvironmentState estadoAmbiente = (CaperucitaEnvironmentState) caperucitaBosque.getEnvironmentState();
 
-        int row = environmentState.getAgentPosition()[0];
-        int col = environmentState.getAgentPosition()[1];
+        int row = estadoAmbiente.getAgentPosition()[0];
+        int col = estadoAmbiente.getAgentPosition()[1];
+        int[][] ambiente = estadoAmbiente.getWorld();
 
         this.setTopSensor(caperucitaBosque.getTopCol(row, col));
         this.setLeftSensor(caperucitaBosque.getLeftRow(row, col));
         this.setRightSensor(caperucitaBosque.getRightRow(row, col));
         this.setBottomSensor(caperucitaBosque.getBottomCol(row, col));
+        
+        //desplazamiento aleatorio del lobo en posicion vacia o donde esta caperucita
+        int filaLobo=0;
+        int columnaLobo=0;
+        
+        while(!(ambiente[filaLobo][columnaLobo] == CaperucitaPerception.EMPTY_PERCEPTION)){
+        	
+	        filaLobo = (int) (Math.random() * CaperucitaEnvironmentState.TAM -1);
+	        columnaLobo = (int) (Math.random() * CaperucitaEnvironmentState.TAM -1);
+        }
+        
+        estadoAmbiente.setWorld(estadoAmbiente.getWolfPosition()[0], estadoAmbiente.getWolfPosition()[1], CaperucitaPerception.EMPTY_PERCEPTION);
+        estadoAmbiente.setWolfPosition(new int []{filaLobo, columnaLobo});
+        
 		
 	}
 

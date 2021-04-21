@@ -64,25 +64,7 @@ public class IrArriba extends SearchAction {
         	estadoAmbiente.setAgentPosition(new int[] {x-1, y});
         }
         
-      //desplazamiento aleatorio del lobo en posicion vacia o donde esta caperucita
-        int filaLobo=0;
-        int columnaLobo=0;
-        
-        while(!(ambiente[filaLobo][columnaLobo] == CaperucitaPerception.EMPTY_PERCEPTION)){
-        	
-	        filaLobo = (int) (Math.random() * CaperucitaEnvironmentState.TAM -1);
-	        columnaLobo = (int) (Math.random() * CaperucitaEnvironmentState.TAM -1);
-        }
-        
-        estadoAmbiente.setWorld(estadoAmbiente.getWolfPosition()[0], estadoAmbiente.getWolfPosition()[1], CaperucitaPerception.EMPTY_PERCEPTION);
-        estadoAmbiente.setWolfPosition(new int []{filaLobo, columnaLobo});
-        
-        //si el lobo cae en l posicion de caperucita se la morfa y capeucita arranca en la pos inicial
-        if(Arrays.equals(estadoAmbiente.getWolfPosition(),caperucitaEstado.getPosicionActual())) {
-        	
-        	CaperucitaEstadoAgente.cantVidas--;
-        	caperucitaEstado.setPosicionActual(caperucitaEstado.getInitialPosition()[0], caperucitaEstado.getInitialPosition()[1]);
-        }
+
         
 		return estadoAmbiente;
 	}

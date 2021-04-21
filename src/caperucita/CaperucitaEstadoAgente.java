@@ -1,5 +1,7 @@
 package caperucita;
 
+import java.util.Arrays;
+
 import frsf.cidisi.faia.agent.Perception;
 import frsf.cidisi.faia.agent.search.SearchBasedAgentState;
 
@@ -69,51 +71,18 @@ public class CaperucitaEstadoAgente extends SearchBasedAgentState {
 	@Override
 	public void updateState(Perception p) {
 		CaperucitaPerception caperucitaPerception = (CaperucitaPerception) p;
-//VER EN CONSULTA SI ESTA BIEN	
-	/*	
-		//izquierda
-		int row = this.getFilaPosicion();
-		int col = this.getColumnaPosicion();
+		CaperucitaEstadoAgente caperucitaEstado = new CaperucitaEstadoAgente();
+		CaperucitaEnvironmentState estadoAmbiente = new CaperucitaEnvironmentState();
 		
-		int i=1;
-	
-			while(world[row][col-i] != CaperucitaPerception.ARBOL_PERCEPTION) {
-				world[row][col-i]=caperucitaPerception.getLeftSensor()[i];
-				i++;
-			}
-			
-		//derecha	
-		row = this.getFilaPosicion();
-		col = this.getColumnaPosicion();
-		i=1;
-		
-		while(world[row][col+i] != CaperucitaPerception.ARBOL_PERCEPTION) {
-			world[row][col+i]=caperucitaPerception.getRightSensor()[i];
-			i++;
-		}
-		
-		//arriba
-		row = this.getFilaPosicion();
-		col = this.getColumnaPosicion();
-		i=1;
-		
-		while(world[row-i][col] != CaperucitaPerception.ARBOL_PERCEPTION) {
-			world[row-i][col]=caperucitaPerception.getTopSensor()[i];
-			i++;
-		}
-		
-		//abajo	
-		row = this.getFilaPosicion();
-		col = this.getColumnaPosicion();
-		i=1;
-			
-		while(world[row+i][col] != CaperucitaPerception.ARBOL_PERCEPTION) {
-			world[row+i][col]=caperucitaPerception.getBottomSensor()[i];
-			i++;
-		}*/
-		
-		cantVidas=CaperucitaEstadoAgente.getVidas();
 		wolfPosition=this.getWolfPosition();
+		
+        //si el lobo cae en l posicion de caperucita se la morfa y capeucita arranca en la pos inicial
+        if(Arrays.equals(estadoAmbiente.getWolfPosition(),caperucitaEstado.getPosicionActual())) {
+        	
+        	CaperucitaEstadoAgente.cantVidas--;        
+        	caperucitaEstado.setPosicionActual(caperucitaEstado.getInitialPosition()[0], caperucitaEstado.getInitialPosition()[1]);
+      
+        }
 		
 	}
 
