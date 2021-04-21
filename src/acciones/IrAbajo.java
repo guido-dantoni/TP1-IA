@@ -60,11 +60,24 @@ public class IrAbajo extends SearchAction {
         int[][] ambiente = estadoAmbiente.getWorld();
         
         while(ambiente[x+1][y] != CaperucitaPerception.ARBOL_PERCEPTION){
+        	if(ambiente[x][y] == CaperucitaPerception.FOOD_PERCEPTION){
+        		estadoAmbiente.setWorld(x, y, CaperucitaPerception.EMPTY_PERCEPTION);
+	            estadoAmbiente.setCantDulces(estadoAmbiente.getCantDulces()-1);
+        		caperucitaEstado.setWorldPosition(x, y, CaperucitaPerception.EMPTY_PERCEPTION);
+	            CaperucitaEstadoAgente.cantDulces++;
+        	}
+        	if(ambiente[x][y] == CaperucitaPerception.ENEMY_PERCEPTION) {
+        		int[] i = {x,y};
+        		estadoAmbiente.setWolfPosition(i);
+        		caperucitaEstado.setWolfPosition(i);
+        		return null;
+        	}
         	estadoAmbiente.setAgentPosition(new int[] {x+1, y});
         }
-        
-        
+            
+
 		return estadoAmbiente;
+		
 	}
 
 	@Override
