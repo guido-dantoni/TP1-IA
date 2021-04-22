@@ -14,31 +14,32 @@ public class IrArriba extends SearchAction {
 
 	@Override
 	public SearchBasedAgentState execute(SearchBasedAgentState s) {
+		CaperucitaEstadoAgente caperucitaEstado = (CaperucitaEstadoAgente) s;
 		
-			CaperucitaEstadoAgente caperucitaEstado = (CaperucitaEstadoAgente) s;
 
-		    int x = caperucitaEstado.getFilaPosicion();
-	        int y = caperucitaEstado.getColumnaPosicion();
+	    int x = caperucitaEstado.getFilaPosicion();
+        int y = caperucitaEstado.getColumnaPosicion();
+        int visitedCells=0;
 
-
-	        int[][] ambiente = caperucitaEstado.getWorld();
-	        
-	        while(ambiente[x-1][y] != CaperucitaPerception.ARBOL_PERCEPTION){
-	        	if(ambiente[x][y] == CaperucitaPerception.FOOD_PERCEPTION){
-	        		caperucitaEstado.setWorldPosition(x, y, CaperucitaPerception.EMPTY_PERCEPTION);
-		            CaperucitaEstadoAgente.cantDulces++;
-	        	}
-	        	if(ambiente[x][y] == CaperucitaPerception.ENEMY_PERCEPTION) {
-	        		int[] i = {x,y};
-	        		caperucitaEstado.setWolfPosition(i);
-	        		return null;
-	        	}
-	        	caperucitaEstado.setPosicionActual(x-1,y);
-	        }
-	        
-	        
-			return caperucitaEstado;
-	
+        int[][] ambiente = caperucitaEstado.getWorld();
+        
+        while(ambiente[x-1][y] != CaperucitaPerception.ARBOL_PERCEPTION){
+        	if(ambiente[x][y] == CaperucitaPerception.FOOD_PERCEPTION){
+        		caperucitaEstado.setWorldPosition(x, y, CaperucitaPerception.EMPTY_PERCEPTION);
+	            CaperucitaEstadoAgente.cantDulces++;
+        	}
+        	if(ambiente[x][y] == CaperucitaPerception.ENEMY_PERCEPTION) {
+        		int[] i = {x,y};
+        		caperucitaEstado.setWolfPosition(i);
+        		return null;
+        	}
+        	caperucitaEstado.setPosicionActual(x-1,y);
+        	visitedCells++;
+        }
+        
+        caperucitaEstado.increaseVisitedCellsCount(visitedCells);
+		return caperucitaEstado;
+		
 	}
 
 	@Override
@@ -55,6 +56,7 @@ public class IrArriba extends SearchAction {
 		int[] pos = estadoAmbiente.getAgentPosition();
 	    int x = pos[0];
         int y = pos[1];
+        int visitedCells=0;
 
         //desplazamiento de caperucita
         int[][] ambiente = estadoAmbiente.getWorld();
@@ -72,17 +74,19 @@ public class IrArriba extends SearchAction {
         		caperucitaEstado.setWolfPosition(i);
         		return null;
         	}
+        	visitedCells++;
         	estadoAmbiente.setAgentPosition(new int[] {x-1, y});
         }
             
-
+        caperucitaEstado.increaseVisitedCellsCount(visitedCells);
 		return estadoAmbiente;
 		
 	}
+
 	@Override
 	public String toString() {
-		// TODO Auto-generated method stub
-		return null;
+		
+		return "irArriba";
 	}
 
 }

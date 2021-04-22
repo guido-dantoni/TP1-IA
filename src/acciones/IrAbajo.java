@@ -19,7 +19,7 @@ public class IrAbajo extends SearchAction {
 
 	    int x = caperucitaEstado.getFilaPosicion();
         int y = caperucitaEstado.getColumnaPosicion();
-
+        int visitedCells=0;
 
         int[][] ambiente = caperucitaEstado.getWorld();
         
@@ -34,9 +34,10 @@ public class IrAbajo extends SearchAction {
         		return null;
         	}
         	caperucitaEstado.setPosicionActual(x+1,y);
+        	visitedCells++;
         }
         
-        
+        caperucitaEstado.increaseVisitedCellsCount(visitedCells);
 		return caperucitaEstado;
 		
 	}
@@ -55,6 +56,7 @@ public class IrAbajo extends SearchAction {
 		int[] pos = estadoAmbiente.getAgentPosition();
 	    int x = pos[0];
         int y = pos[1];
+        int visitedCells=0;
 
         //desplazamiento de caperucita
         int[][] ambiente = estadoAmbiente.getWorld();
@@ -72,18 +74,19 @@ public class IrAbajo extends SearchAction {
         		caperucitaEstado.setWolfPosition(i);
         		return null;
         	}
+        	visitedCells++;
         	estadoAmbiente.setAgentPosition(new int[] {x+1, y});
         }
             
-
+        caperucitaEstado.increaseVisitedCellsCount(visitedCells);
 		return estadoAmbiente;
 		
 	}
 
 	@Override
 	public String toString() {
-		// TODO Auto-generated method stub
-		return null;
+		
+		return "irAbajo";
 	}
 
 }

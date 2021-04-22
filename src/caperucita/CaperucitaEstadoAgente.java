@@ -14,6 +14,7 @@ public class CaperucitaEstadoAgente extends SearchBasedAgentState {
     private int[] wolfPosition;
     public static int cantVidas=3;
     public static int cantDulces=0;
+    private int celdasVisitadas;
 	public static final int TAM = CaperucitaEnvironmentState.TAM;
 
      
@@ -24,6 +25,7 @@ public class CaperucitaEstadoAgente extends SearchBasedAgentState {
         initialPosition[0] = row;
         initialPosition[1] = col;
         cantVidas=lifes;
+        celdasVisitadas=0;
         
     }
     
@@ -88,8 +90,26 @@ public class CaperucitaEstadoAgente extends SearchBasedAgentState {
 
 	@Override
 	public String toString() {
-		// TODO Auto-generated method stub
-		return null;
+        String str = "";
+
+        str = str + " position=\"(" + getFilaPosicion()  + "," + "" + getColumnaPosicion() + ")\"";
+       
+
+        str = str + "world=\"[ \n";
+        for (int row = 0; row < world.length; row++) {
+            str = str + "[ ";
+            for (int col = 0; col < world.length; col++) {
+                if (world[row][col] == -1) {
+                    str = str + "* ";
+                } else {
+                    str = str + world[row][col] + " ";
+                }
+            }
+            str = str + " ]\n";
+        }
+        str = str + " ]\"";
+
+        return str;
 	}
 
 	@Override
@@ -172,6 +192,27 @@ public class CaperucitaEstadoAgente extends SearchBasedAgentState {
 	public static int getCantDulces() {
 		
 		return cantDulces;
+	}
+
+	public double getVisitedCellsCount() {
+
+		return celdasVisitadas;
+	}
+
+	//a cada celda le ponemos de costo 1, como se mueve de a varias celdas, las incremento en "a" cantidades de celdas
+    public void increaseVisitedCellsCount(int a) {
+        this.celdasVisitadas = +a;
+    }
+
+    //retorna la distancia de la posicion del agente a la salida
+	public double getDistanciaSalida() {
+		
+		Bosque b = new Bosque();
+		int difFila = b.getSalida()[0] - this.getFilaPosicion();
+		int difColumna = b.getSalida()[0] - this.getColumnaPosicion();
+				
+		
+		return (Math.abs(difFila) + Math.abs(difColumna));
 	}
 
 }
