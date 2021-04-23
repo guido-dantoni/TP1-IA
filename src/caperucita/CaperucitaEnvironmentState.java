@@ -72,6 +72,7 @@ public class CaperucitaEnvironmentState extends EnvironmentState {
 
 
         this.setAgentPosition(new int[]{5, 11});
+        this.setWolfPosition(new int[] {9,4});
 
     }
 

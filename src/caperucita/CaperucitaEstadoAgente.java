@@ -32,6 +32,7 @@ public class CaperucitaEstadoAgente extends SearchBasedAgentState {
     public CaperucitaEstadoAgente() {
         world = new int[TAM][TAM];
         initialPosition = new int[2];
+        posicion = new int[2];
         this.initState();
     }
 
@@ -115,15 +116,14 @@ public class CaperucitaEstadoAgente extends SearchBasedAgentState {
 	@Override
 	public void initState() {
 		
-		//ESTO NOSE SI SERA ASI.... ********************************************************************
+		
 		
 		CaperucitaEnvironmentState estadoAmbiente = new CaperucitaEnvironmentState();
 		estadoAmbiente.initState();
 		this.setWorld(estadoAmbiente.getWorld());
 		this.setInitialPosition(estadoAmbiente.getAgentPosition());
-		this.setPosicionActual(this.getInitialPosition()[0],this.getInitialPosition()[1]) ;
+		this.setPosicionActual(estadoAmbiente.getAgentPosition()[0],estadoAmbiente.getAgentPosition()[1]) ;
 		this.setWolfPosition(estadoAmbiente.getWolfPosition());
-		
 		
 	}
 	
