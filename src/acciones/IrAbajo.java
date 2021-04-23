@@ -22,19 +22,22 @@ public class IrAbajo extends SearchAction {
         int visitedCells=0;
 
         int[][] ambiente = caperucitaEstado.getWorld();
-        
+       
         while(ambiente[x+1][y] != CaperucitaPerception.ARBOL_PERCEPTION){
         	if(ambiente[x][y] == CaperucitaPerception.FOOD_PERCEPTION){
         		caperucitaEstado.setWorldPosition(x, y, CaperucitaPerception.EMPTY_PERCEPTION);
 	            CaperucitaEstadoAgente.cantDulces++;
+	            
         	}
         	if(ambiente[x][y] == CaperucitaPerception.ENEMY_PERCEPTION) {
         		int[] i = {x,y};
         		caperucitaEstado.setWolfPosition(i);
         		return null;
         	}
+        	
         	caperucitaEstado.setPosicionActual(x+1,y);
         	visitedCells++;
+        	x++;
         }
         
         caperucitaEstado.increaseVisitedCellsCount(visitedCells);
@@ -76,6 +79,7 @@ public class IrAbajo extends SearchAction {
         	}
         	visitedCells++;
         	estadoAmbiente.setAgentPosition(new int[] {x+1, y});
+        	x++;
         }
             
         caperucitaEstado.increaseVisitedCellsCount(visitedCells);

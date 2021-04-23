@@ -43,10 +43,10 @@ public class CaperucitaEstadoAgente extends SearchBasedAgentState {
 		boolean col = ((CaperucitaEstadoAgente) obj).getColumnaPosicion() == this.getColumnaPosicion();
 		boolean vidas = ((CaperucitaEstadoAgente) obj).getVidas() == this.getVidas();
 		boolean comida = ((CaperucitaEstadoAgente) obj).getCantDulces() == this.getCantDulces();
-		boolean filaLobo = ((CaperucitaEstadoAgente) obj).getWolfPosition()[0]==this.getWolfPosition()[0];
-		boolean colLobo = ((CaperucitaEstadoAgente) obj).getWolfPosition()[1]==this.getWolfPosition()[1];
+		//boolean filaLobo = ((CaperucitaEstadoAgente) obj).getWolfPosition()[0]==this.getWolfPosition()[0];
+		//boolean colLobo = ((CaperucitaEstadoAgente) obj).getWolfPosition()[1]==this.getWolfPosition()[1];
 		
-		return (fila && col && vidas && comida && filaLobo && colLobo);
+		return (fila && col && vidas && comida /*&& filaLobo && colLobo*/);
 	}
 
 

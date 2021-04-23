@@ -79,7 +79,7 @@ public abstract class GoalBasedAgentSimulator extends Simulator {
 
             System.out.println("Asking the agent for an action...");
             action = agent.selectAction();
-
+            
             if (action == null) {
                 break;
             }

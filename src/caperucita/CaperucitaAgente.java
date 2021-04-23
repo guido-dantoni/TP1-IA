@@ -13,6 +13,7 @@ import frsf.cidisi.faia.agent.Perception;
 import frsf.cidisi.faia.agent.search.Problem;
 import frsf.cidisi.faia.agent.search.SearchAction;
 import frsf.cidisi.faia.agent.search.SearchBasedAgent;
+import frsf.cidisi.faia.solver.search.BreathFirstSearch;
 import frsf.cidisi.faia.solver.search.DepthFirstSearch;
 import frsf.cidisi.faia.solver.search.Search;
 
@@ -32,8 +33,8 @@ class CaperucitaAgente extends SearchBasedAgent {
         // Create the operators
         Vector<SearchAction> operators = new Vector<SearchAction>();
 
-        operators.addElement(new IrArriba());
         operators.addElement(new IrAbajo());
+        operators.addElement(new IrArriba());
         operators.addElement(new IrIzquierda());
         operators.addElement(new IrDerecha());
 
@@ -51,8 +52,8 @@ class CaperucitaAgente extends SearchBasedAgent {
 	@Override
 	public Action selectAction() {
         // Create the search strategy
-        DepthFirstSearch strategy = new DepthFirstSearch();
-
+		//DepthFirstSearch strategy = new DepthFirstSearch();
+		BreathFirstSearch strategy = new BreathFirstSearch();
         /**
          * Another search strategy examples:
          * 
@@ -78,10 +79,10 @@ class CaperucitaAgente extends SearchBasedAgent {
 
         // Create a Search object with the strategy
         Search searchSolver = new Search(strategy);
-
+        
         /* Generate an XML file with the search tree. It can also be generated
          * in other formats like PDF with PDF_TREE */
-        searchSolver.setVisibleTree(Search.EFAIA_TREE);
+        searchSolver.setVisibleTree(Search.XML_TREE);
 
         // Set the Search searchSolver.
         this.setSolver(searchSolver);
@@ -89,8 +90,9 @@ class CaperucitaAgente extends SearchBasedAgent {
         // Ask the solver for the best action
         Action selectedAction = null;
         try {
-            selectedAction =
+        	 selectedAction =
                     this.getSolver().solve(new Object[]{this.getProblem()});
+
         } catch (Exception ex) {
             Logger.getLogger(CaperucitaAgente.class.getName()).log(Level.SEVERE, null, ex);
         }

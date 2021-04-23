@@ -124,7 +124,7 @@ public class CaperucitaEnvironmentState extends EnvironmentState {
 		int vector[]  = new int[TAM];
 		int i=0;
 	
-			while(world[row-1][col] != CaperucitaPerception.ARBOL_PERCEPTION) {
+			while(world[row-1][col] != CaperucitaPerception.ARBOL_PERCEPTION && world.length<TAM) {
 				vector[i]=world[row-1][col];
 				row--;
 			}
@@ -137,7 +137,7 @@ public class CaperucitaEnvironmentState extends EnvironmentState {
 		int vector[]  = new int[TAM];
 		int i=0;
 	
-			while(world[row][col-1] != CaperucitaPerception.ARBOL_PERCEPTION) {
+			while(world[row][col-1] != CaperucitaPerception.ARBOL_PERCEPTION && world.length<TAM) {
 				vector[i]=world[row][col-1];
 				col--;
 			}
@@ -148,7 +148,7 @@ public class CaperucitaEnvironmentState extends EnvironmentState {
 		int vector[]  = new int[TAM];
 		int i=0;
 	
-			while(world[row][col+1] != CaperucitaPerception.ARBOL_PERCEPTION) {
+			while(world[row][col+1] != CaperucitaPerception.ARBOL_PERCEPTION && world.length<TAM) {
 				vector[i]=world[row][col+1];
 				col++;
 			}
@@ -160,7 +160,7 @@ public class CaperucitaEnvironmentState extends EnvironmentState {
 		int vector[]  = new int[TAM];
 		int i=0;
 	
-			while(world[row+1][col] != CaperucitaPerception.ARBOL_PERCEPTION) {
+			while(world[row+1][col] != CaperucitaPerception.ARBOL_PERCEPTION && world.length<TAM) {
 				vector[i]=world[row+1][col];
 				row++;
 			}

@@ -35,6 +35,7 @@ public class IrIzquierda extends SearchAction {
         	}
         	caperucitaEstado.setPosicionActual(x,y-1);
         	visitedCells++;
+        	y--;
         }
         
         caperucitaEstado.increaseVisitedCellsCount(visitedCells);
@@ -76,6 +77,7 @@ public class IrIzquierda extends SearchAction {
         	}
         	visitedCells++;
         	estadoAmbiente.setAgentPosition(new int[] {x, y-1});
+        	y--;
         }
             
         caperucitaEstado.increaseVisitedCellsCount(visitedCells);
