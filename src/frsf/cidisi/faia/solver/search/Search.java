@@ -82,7 +82,8 @@ public class Search extends Solve {
         Vector<SearchAction> actionList = problem.getActions();
         SearchBasedAgentState agentState = problem.getAgentState();//.clone();
         GoalTest goalTest = problem.getGoalState();
-
+       
+        
         int nodeIdx = 1;
 
         tree = new NTree();
@@ -92,12 +93,12 @@ public class Search extends Solve {
         searchStrategy.initNodesToExpandList(tree);
 
         boolean goal = false;
-
+        
         // This iteration will occur while nodesToExpand have nodes and the actual node is not a goal node.-
         while (searchStrategy.getNodesToExpandSize() > 0 & !goal) {
             // This is the first node of the node's queue that will be expanded
             NTree firstNode = (NTree) searchStrategy.getNode();
-
+            //System.out.println(searchStrategy.getNode());
             //System.out.println("Profundidad: " + firstNode.getDeep());
 
             // If the actual node is a goal node then the search must finish.-
@@ -105,7 +106,7 @@ public class Search extends Solve {
                 goal = true;
                 goalNode = firstNode;
             } else {	// If the actual node is not a goal node then it must be expanded.-
-
+            	
                 // Every item in the action list represents a possible son for the actual node.-
                 for (int i = 0; i < actionList.size(); i++) {
                     // The state of the selected node must be cloned to assure consistence.-
@@ -131,11 +132,10 @@ public class Search extends Solve {
                 searchStrategy.addNodesToExpand(firstNode.getSons());
             }
         }
-
+       //System.out.println("clase search linea 135, el valor de goal es:" + goal);
         if (goal && !getBestPath().isEmpty()) {
             // This variable store the branch's path where the node belongs.-
             Vector<NTree> path = getBestPath();
-
             // The first node of the branch has the action that must be executed by the agent.-
             return path.elementAt(0).getAction();
         }

@@ -77,6 +77,7 @@ public class IrDerecha extends SearchAction {
         	}
         	visitedCells++;
         	estadoAmbiente.setAgentPosition(new int[] {x, y+1});
+        	caperucitaEstado.setPosicionActual(x,y+1);
         	y++;
         }
             

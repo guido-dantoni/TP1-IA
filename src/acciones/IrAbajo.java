@@ -79,6 +79,7 @@ public class IrAbajo extends SearchAction {
         	}
         	visitedCells++;
         	estadoAmbiente.setAgentPosition(new int[] {x+1, y});
+        	caperucitaEstado.setPosicionActual(x+1,y);
         	x++;
         }
             

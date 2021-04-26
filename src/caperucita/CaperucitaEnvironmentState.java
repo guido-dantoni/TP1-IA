@@ -17,12 +17,18 @@ public class CaperucitaEnvironmentState extends EnvironmentState {
     public static final int TAM=14;
 
 
-    public CaperucitaEnvironmentState(int[][] m) {
+    public CaperucitaEnvironmentState(int[][] m, int[] agent, int[] wolf, int[] dulces) {
         world = m;
+        positionDulces=dulces;
+        agentPosition= agent;
+        wolfPosition =wolf;
     }
 
     public CaperucitaEnvironmentState() {
         world = new int[TAM][TAM];
+        positionDulces=new int [2];
+        agentPosition= new int [2];
+        wolfPosition = new int [2];
         this.initState();
     }
 
@@ -67,11 +73,10 @@ public class CaperucitaEnvironmentState extends EnvironmentState {
         world[6][4]=CaperucitaPerception.ARBOL_PERCEPTION;
         world[7][9]=CaperucitaPerception.ARBOL_PERCEPTION;
         world[11][10]=CaperucitaPerception.ARBOL_PERCEPTION;
+        world[12][6]=CaperucitaPerception.ARBOL_PERCEPTION;
         
         
-
-
-        this.setAgentPosition(new int[]{5, 11});
+        this.setAgentPosition(new int[]{5, 10});
         this.setWolfPosition(new int[] {9,4});
 
     }

@@ -9,7 +9,7 @@ import frsf.cidisi.faia.agent.search.SearchBasedAgentState;
 public class CaperucitaEstadoAgente extends SearchBasedAgentState {
 
     private int[][] world;
-    private int[] posicion;
+    private int[] posicionActual;
     private int[] initialPosition;
     private int[] wolfPosition;
     public static int cantVidas=3;
@@ -18,21 +18,23 @@ public class CaperucitaEstadoAgente extends SearchBasedAgentState {
 	public static final int TAM = CaperucitaEnvironmentState.TAM;
 
      
-    public CaperucitaEstadoAgente(int[][] m, int row, int col, int lifes) {
+    public CaperucitaEstadoAgente(int[][] m, int row, int col, int lifes, int[] lobo) {
         world = m;
-        posicion = new int[] {row, col};
+        posicionActual = new int[] {row, col};
         initialPosition = new int[2];
         initialPosition[0] = row;
         initialPosition[1] = col;
         cantVidas=lifes;
         celdasVisitadas=0;
+        wolfPosition = lobo;
         
     }
     
     public CaperucitaEstadoAgente() {
         world = new int[TAM][TAM];
         initialPosition = new int[2];
-        posicion = new int[2];
+        posicionActual = new int[2];
+        wolfPosition= new int[2];
         this.initState();
     }
 
@@ -62,11 +64,11 @@ public class CaperucitaEstadoAgente extends SearchBasedAgentState {
 			}
 		}
 		 int[] newPosition = new int[2];
-	        newPosition[0] = posicion[0];
-	        newPosition[1] = posicion[1];
+	        newPosition[0] = posicionActual[0];
+	        newPosition[1] = posicionActual[1];
 
 	        CaperucitaEstadoAgente newState = new CaperucitaEstadoAgente(newWorld,
-	        		this.getFilaPosicion(), this.getColumnaPosicion(), CaperucitaEstadoAgente.getVidas());
+	        		this.getFilaPosicion(), this.getColumnaPosicion(), CaperucitaEstadoAgente.getVidas(), this.getWolfPosition());
 
 	        return newState;
 	}
@@ -128,22 +130,22 @@ public class CaperucitaEstadoAgente extends SearchBasedAgentState {
 	}
 	
 	public int[] getPosicionActual() {
-		return posicion;
+		return posicionActual;
 	}
 	
 	//obtener fila de la posicion
 	public int getFilaPosicion() {
-		return posicion[0];
+		return posicionActual[0];
 	}
 	
 	//obtener columna de la posicion
 	public int getColumnaPosicion() {
-		return posicion[1];
+		return posicionActual[1];
 	}
 	
 	public void setPosicionActual(int fila, int col) {
-		this.posicion[0]=fila;
-		this.posicion[1]=col;
+		this.posicionActual[0]=fila;
+		this.posicionActual[1]=col;
 	}
 	
 	public static int getVidas() {
