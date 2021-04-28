@@ -19,11 +19,17 @@ package frsf.cidisi.faia.simulator;
 
 import java.util.Vector;
 
+import acciones.IrAbajo;
+import acciones.IrArriba;
+import acciones.IrDerecha;
+import acciones.IrIzquierda;
 import caperucita.CaperucitaEstadoAgente;
+import caperucita.CaperucitaPerception;
 import frsf.cidisi.faia.agent.GoalBasedAgent;
 import frsf.cidisi.faia.agent.Agent;
 import frsf.cidisi.faia.agent.Action;
 import frsf.cidisi.faia.agent.Perception;
+import frsf.cidisi.faia.agent.search.SearchAction;
 import frsf.cidisi.faia.environment.Environment;
 import frsf.cidisi.faia.simulator.events.EventType;
 import frsf.cidisi.faia.simulator.events.SimulatorEventNotifier;
@@ -84,7 +90,7 @@ public abstract class GoalBasedAgentSimulator extends Simulator {
             if (action == null) {
                 break;
             }
-
+            this.hayComida(action, agent);
             System.out.println("Action returned: " + action);
             System.out.println();
 
@@ -100,6 +106,8 @@ public abstract class GoalBasedAgentSimulator extends Simulator {
             
         } else {
             System.out.println("ERROR: The simulation has finished, but the agent has not reached his goal.");
+            System.out.println("cantidad de dulces: " + ((CaperucitaEstadoAgente) agent.getAgentState()).getCantDulces());
+            System.out.println("cantidad de vidas: " + ((CaperucitaEstadoAgente) agent.getAgentState()).getVidas());
         }
 
         // Leave a blank line
@@ -112,7 +120,66 @@ public abstract class GoalBasedAgentSimulator extends Simulator {
         SimulatorEventNotifier.runEventHandlers(EventType.SimulationFinished, null);
     }
 
-    /**
+    private void hayComida(Action a, Agent agente) {
+    	
+    		CaperucitaEstadoAgente caperucitaEstado= (CaperucitaEstadoAgente) ((GoalBasedAgent) agente).getAgentState();
+    		int ambiente[][] = new int[CaperucitaEstadoAgente.TAM][CaperucitaEstadoAgente.TAM];
+    		ambiente= caperucitaEstado.getWorld();
+    		int x = caperucitaEstado.getFilaPosicion();
+    	    int y = caperucitaEstado.getColumnaPosicion();
+    		
+    	    
+    		if(a instanceof IrArriba) {
+   	        while(ambiente[x-1][y] != CaperucitaPerception.ARBOL_PERCEPTION){
+    	        	
+    	        	if(ambiente[x][y] == CaperucitaPerception.FOOD_PERCEPTION){
+    	        		caperucitaEstado.setWorldPosition(x, y, CaperucitaPerception.EMPTY_PERCEPTION);
+    		            CaperucitaEstadoAgente.cantDulces++;
+    		           }
+    	        	caperucitaEstado.setPosicionActual(x-1,y);
+		        	x--;
+    	        }
+   	        	return;
+    		}else if(a instanceof IrAbajo) {
+    	        while(ambiente[x+1][y] != CaperucitaPerception.ARBOL_PERCEPTION){
+    	        	
+    	        	if(ambiente[x][y] == CaperucitaPerception.FOOD_PERCEPTION){
+    	        		caperucitaEstado.setWorldPosition(x, y, CaperucitaPerception.EMPTY_PERCEPTION);
+    		            CaperucitaEstadoAgente.cantDulces++;
+    		           }
+    	        	caperucitaEstado.setPosicionActual(x+1,y);
+		        	x++;
+    	        }
+
+    	        return;
+    		}else if(a instanceof IrDerecha) {
+   	        while(ambiente[x][y+1] != CaperucitaPerception.ARBOL_PERCEPTION){
+   	        	System.out.println("ACA");
+    	        	if(ambiente[x][y] == CaperucitaPerception.FOOD_PERCEPTION){
+    	        		caperucitaEstado.setWorldPosition(x, y, CaperucitaPerception.EMPTY_PERCEPTION);
+    		            CaperucitaEstadoAgente.cantDulces++;
+    		           	}
+    	        	caperucitaEstado.setPosicionActual(x,y+1);
+		        	y++;
+    	        }
+   	     return;
+    		}else if(a instanceof IrIzquierda) {
+    			
+   	        while(ambiente[x][y-1] != CaperucitaPerception.ARBOL_PERCEPTION){
+    	        	
+    	        	if(ambiente[x][y] == CaperucitaPerception.FOOD_PERCEPTION){
+    	        		caperucitaEstado.setWorldPosition(x, y, CaperucitaPerception.EMPTY_PERCEPTION);
+    		            CaperucitaEstadoAgente.cantDulces++;
+    		           }
+    	        	caperucitaEstado.setPosicionActual(x,y-1);
+		        	y--;
+    	        }
+   	     return;
+    		}
+    				
+	}
+
+	/**
      * Here we update the state of the agent and the real state of the
      * simulator.
      * @param action

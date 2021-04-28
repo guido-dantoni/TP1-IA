@@ -62,6 +62,7 @@ public class CaperucitaEnvironmentState extends EnvironmentState {
         world[1][3] = CaperucitaPerception.FOOD_PERCEPTION;
         world[1][9] = CaperucitaPerception.FOOD_PERCEPTION;
         world[7][4] = CaperucitaPerception.FOOD_PERCEPTION;
+        world[5][11] = CaperucitaPerception.FOOD_PERCEPTION;
         
         world[1][5]=CaperucitaPerception.ARBOL_PERCEPTION;
         world[5][5]=CaperucitaPerception.ARBOL_PERCEPTION;
