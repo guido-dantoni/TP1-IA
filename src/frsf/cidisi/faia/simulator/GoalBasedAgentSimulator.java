@@ -19,6 +19,7 @@ package frsf.cidisi.faia.simulator;
 
 import java.util.Vector;
 
+import caperucita.CaperucitaEstadoAgente;
 import frsf.cidisi.faia.agent.GoalBasedAgent;
 import frsf.cidisi.faia.agent.Agent;
 import frsf.cidisi.faia.agent.Action;
@@ -94,6 +95,8 @@ public abstract class GoalBasedAgentSimulator extends Simulator {
         // Check what happened, if agent has reached the goal or not.
         if (this.agentSucceeded(action)) {
             System.out.println("Agent has reached the goal!");
+            System.out.println("cantidad de dulces: " + ((CaperucitaEstadoAgente) agent.getAgentState()).getCantDulces());
+            System.out.println("cantidad de vidas: " + ((CaperucitaEstadoAgente) agent.getAgentState()).getVidas());
             
         } else {
             System.out.println("ERROR: The simulation has finished, but the agent has not reached his goal.");
