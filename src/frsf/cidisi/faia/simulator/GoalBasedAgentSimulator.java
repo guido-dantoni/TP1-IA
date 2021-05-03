@@ -75,7 +75,6 @@ public abstract class GoalBasedAgentSimulator extends Simulator {
         do {
 
             System.out.println("------------------------------------");
-
             System.out.println("Sending perception to agent...");
             perception = this.getPercept();
             agent.see(perception);
@@ -154,7 +153,7 @@ public abstract class GoalBasedAgentSimulator extends Simulator {
     	        return;
     		}else if(a instanceof IrDerecha) {
    	        while(ambiente[x][y+1] != CaperucitaPerception.ARBOL_PERCEPTION){
-   	        	System.out.println("ACA");
+   	        	
     	        	if(ambiente[x][y] == CaperucitaPerception.FOOD_PERCEPTION){
     	        		caperucitaEstado.setWorldPosition(x, y, CaperucitaPerception.EMPTY_PERCEPTION);
     		            CaperucitaEstadoAgente.cantDulces++;

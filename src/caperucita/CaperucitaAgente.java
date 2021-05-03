@@ -60,11 +60,11 @@ class CaperucitaAgente extends SearchBasedAgent {
 		//DepthFirstSearch strategy = new DepthFirstSearch();
 		
 		//Breath First Search:
-		BreathFirstSearch strategy = new BreathFirstSearch();
+		//BreathFirstSearch strategy = new BreathFirstSearch();
 		
 		//Uniform Cost:
-		//IStepCostFunction costFunction = new CostFunction();
-        //UniformCostSearch strategy = new UniformCostSearch(costFunction);
+		IStepCostFunction costFunction = new CostFunction();
+        UniformCostSearch strategy = new UniformCostSearch(costFunction);
          
          //A Star Search:
          //IStepCostFunction cost = new CostFunction();
@@ -112,7 +112,7 @@ class CaperucitaAgente extends SearchBasedAgent {
         try {
         	 selectedAction =
                     this.getSolver().solve(new Object[]{this.getProblem()});
-        	 System.out.println("Accion seleccionada: " + selectedAction);
+        	
 
         } catch (Exception ex) {
             Logger.getLogger(CaperucitaAgente.class.getName()).log(Level.SEVERE, null, ex);

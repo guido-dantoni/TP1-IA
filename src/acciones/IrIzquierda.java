@@ -23,7 +23,7 @@ public class IrIzquierda extends SearchAction {
 
         int[][] ambiente = caperucitaEstado.getWorld();
         
-        while(ambiente[x][y-1] != CaperucitaPerception.ARBOL_PERCEPTION){
+        while(ambiente[x][y-1] != CaperucitaPerception.ARBOL_PERCEPTION ){
         	/*if(ambiente[x][y] == CaperucitaPerception.FOOD_PERCEPTION){
         		caperucitaEstado.setWorldPosition(x, y, CaperucitaPerception.EMPTY_PERCEPTION);
 	            CaperucitaEstadoAgente.cantDulces++;

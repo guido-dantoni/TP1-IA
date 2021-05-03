@@ -36,6 +36,7 @@ public class IrDerecha extends SearchAction {
         	caperucitaEstado.setPosicionActual(x,y+1);
         	visitedCells++;
         	y++;
+
         }
         
         caperucitaEstado.increaseVisitedCellsCount(visitedCells);

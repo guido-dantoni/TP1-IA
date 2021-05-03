@@ -48,14 +48,16 @@ public class CaperucitaEnvironmentState extends EnvironmentState {
         
         /* Sets some cells with foods and enemies. */
         for(int i=0; i<TAM; i++) {
-        	world[0][i]= CaperucitaPerception.ARBOL_PERCEPTION;
-        	world[i][0]=CaperucitaPerception.ARBOL_PERCEPTION;
-        	world[i][1]=CaperucitaPerception.ARBOL_PERCEPTION;
-        	world[i][2]=CaperucitaPerception.ARBOL_PERCEPTION;
-        	world[i][12]=CaperucitaPerception.ARBOL_PERCEPTION;
-        	world[i][13]=CaperucitaPerception.ARBOL_PERCEPTION;
-        	world[13][i]=CaperucitaPerception.ARBOL_PERCEPTION;
+        	world[0][i]= CaperucitaPerception.ARBOL_PERCEPTION; //fila 0
+        	world[i][0]=CaperucitaPerception.ARBOL_PERCEPTION; //col 0
+        	world[i][1]=CaperucitaPerception.ARBOL_PERCEPTION; //col 1
+        	world[i][2]=CaperucitaPerception.ARBOL_PERCEPTION; // col 2
+        	world[i][12]=CaperucitaPerception.ARBOL_PERCEPTION; // col 12
+        	world[i][13]=CaperucitaPerception.ARBOL_PERCEPTION; //col 13
+        	world[13][i]=CaperucitaPerception.ARBOL_PERCEPTION; // fila 13
         }
+      //Ambiente 1 **************************************************************************************
+        
         world[12][7] = CaperucitaPerception.SALIDA;
         world[13][7] = CaperucitaPerception.SALIDA;
         world[9][4] = CaperucitaPerception.ENEMY_PERCEPTION;
@@ -64,6 +66,7 @@ public class CaperucitaEnvironmentState extends EnvironmentState {
         world[7][4] = CaperucitaPerception.FOOD_PERCEPTION;
         world[5][11] = CaperucitaPerception.FOOD_PERCEPTION;
         
+        world[11][7]=CaperucitaPerception.ARBOL_PERCEPTION;
         world[1][5]=CaperucitaPerception.ARBOL_PERCEPTION;
         world[5][5]=CaperucitaPerception.ARBOL_PERCEPTION;
         world[4][4]=CaperucitaPerception.ARBOL_PERCEPTION;
@@ -75,10 +78,52 @@ public class CaperucitaEnvironmentState extends EnvironmentState {
         world[7][9]=CaperucitaPerception.ARBOL_PERCEPTION;
         world[11][10]=CaperucitaPerception.ARBOL_PERCEPTION;
         world[12][6]=CaperucitaPerception.ARBOL_PERCEPTION;
-        
+                
         
         this.setAgentPosition(new int[]{5, 10});
         this.setWolfPosition(new int[] {9,4});
+       
+       //AMBIENTE ALTERNATIVO**********************************************************************************
+        /* 
+        world[4][11] = CaperucitaPerception.SALIDA;
+        world[4][12] = CaperucitaPerception.SALIDA;
+        world[4][13] = CaperucitaPerception.SALIDA;
+        world[11][5] = CaperucitaPerception.ENEMY_PERCEPTION;
+        world[1][9] = CaperucitaPerception.FOOD_PERCEPTION;
+        world[2][11] = CaperucitaPerception.FOOD_PERCEPTION;
+        world[9][9] = CaperucitaPerception.FOOD_PERCEPTION;
+        
+        
+        
+        world[2][7]=CaperucitaPerception.ARBOL_PERCEPTION;
+        world[3][6]=CaperucitaPerception.ARBOL_PERCEPTION;
+        world[4][5]=CaperucitaPerception.ARBOL_PERCEPTION;
+        world[4][6]=CaperucitaPerception.ARBOL_PERCEPTION;
+        world[4][6]=CaperucitaPerception.ARBOL_PERCEPTION;   
+        world[4][10]=CaperucitaPerception.ARBOL_PERCEPTION;
+        world[5][10]=CaperucitaPerception.ARBOL_PERCEPTION;
+        world[5][11]=CaperucitaPerception.ARBOL_PERCEPTION;
+        world[6][7]=CaperucitaPerception.ARBOL_PERCEPTION;
+        world[6][8]=CaperucitaPerception.ARBOL_PERCEPTION;
+        world[7][6]=CaperucitaPerception.ARBOL_PERCEPTION;
+        world[8][4]=CaperucitaPerception.ARBOL_PERCEPTION;
+        world[9][4]=CaperucitaPerception.ARBOL_PERCEPTION;
+        world[9][10]=CaperucitaPerception.ARBOL_PERCEPTION;
+        world[9][11]=CaperucitaPerception.ARBOL_PERCEPTION;
+        world[12][6]=CaperucitaPerception.ARBOL_PERCEPTION;
+        world[10][5]=CaperucitaPerception.ARBOL_PERCEPTION;
+        world[11][6]=CaperucitaPerception.ARBOL_PERCEPTION;
+        world[11][9]=CaperucitaPerception.ARBOL_PERCEPTION;
+        world[11][10]=CaperucitaPerception.ARBOL_PERCEPTION;
+        world[12][6]=CaperucitaPerception.ARBOL_PERCEPTION;
+        world[12][9]=CaperucitaPerception.ARBOL_PERCEPTION;
+        world[12][10]=CaperucitaPerception.ARBOL_PERCEPTION;
+        world[13][6]=CaperucitaPerception.ARBOL_PERCEPTION;
+        
+        
+        this.setAgentPosition(new int[]{8, 11});
+        this.setWolfPosition(new int[] {11,5});
+        */
 
     }
 

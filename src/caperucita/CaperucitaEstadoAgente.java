@@ -85,7 +85,7 @@ public class CaperucitaEstadoAgente extends SearchBasedAgentState {
         //si el lobo cae en l posicion de caperucita se la morfa y capeucita arranca en la pos inicial
         if(Arrays.equals(estadoAmbiente.getWolfPosition(),caperucitaEstado.getPosicionActual())) {
         	
-        	CaperucitaEstadoAgente.cantVidas--;        
+        	this.cantVidas--;        
         	caperucitaEstado.setPosicionActual(caperucitaEstado.getInitialPosition()[0], caperucitaEstado.getInitialPosition()[1]);
       
         }
