@@ -83,17 +83,46 @@ public class CaperucitaPerception extends Perception{
 	}
 	
    
-    @Override
+	@Override
     public String toString() {
         StringBuffer str = new StringBuffer();
+       
+        //arriba
+        str.append("Up Sensor: [ ");
+        for (int pos = 0; pos < topSensor.length; pos++) {
+        	
+            str.append(this.topSensor[pos]);
+            str.append(" ");
+        }
+        str.append("] -- ");
+        
 
-        str.append("Left Sensor: " + this.leftSensor);
-        str.append("; ");
-        str.append("Up Sensor: " + this.topSensor);
-        str.append("; ");
-        str.append("Right Sensor: " + this.rightSensor);
-        str.append("; ");
-        str.append("Down Sensor: " + this.bottomSensor);
+      //abajo
+        str.append("Down Sensor: [ ");
+        for (int pos = 0; pos < bottomSensor.length; pos++) {
+        	
+            str.append(this.bottomSensor[pos]);
+            str.append(" ");
+        }
+        str.append("] -- ");
+        
+      //Der
+        str.append("Left Sensor: [ ");
+        for (int pos = 0; pos < leftSensor.length; pos++) {
+        	
+            str.append(this.leftSensor[pos]);
+            str.append(" ");
+        }
+        str.append("] -- ");
+        
+      //izq
+        str.append("Right Sensor: [ ");
+        for (int pos = 0; pos < rightSensor.length; pos++) {
+        	
+            str.append(this.rightSensor[pos]);
+            str.append(" ");
+        }
+        str.append("] ");
 
         return str.toString();
     }

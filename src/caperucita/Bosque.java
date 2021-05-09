@@ -1,5 +1,7 @@
 package caperucita;
 
+import java.util.Arrays;
+
 import frsf.cidisi.faia.agent.Action;
 import frsf.cidisi.faia.agent.Agent;
 import frsf.cidisi.faia.agent.Perception;
@@ -33,6 +35,11 @@ public class Bosque extends Environment{
         int row = this.getEnvironmentState().getAgentPosition()[0];
         int col = this.getEnvironmentState().getAgentPosition()[1];
 
+        
+        CaperucitaEnvironmentState environmentState = this.getEnvironmentState();
+            
+        environmentState.newWolfPosition();
+        
         // Set the perception sensors
         perception.setTopSensor(this.getTopCol(row, col));
         perception.setLeftSensor(this.getLeftRow(row, col));
@@ -81,4 +88,10 @@ public class Bosque extends Environment{
         return ((CaperucitaEnvironmentState) this.environmentState)
                 .getBottomCol(row, col);
 	}
+	
+	 @Override
+	    public String toString() {
+	        return environmentState.toString();
+	    }
+
 }

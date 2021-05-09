@@ -1,6 +1,8 @@
 package caperucita;
 
 
+import java.util.Arrays;
+
 import frsf.cidisi.faia.state.EnvironmentState;
 
 /**
@@ -8,6 +10,9 @@ import frsf.cidisi.faia.state.EnvironmentState;
  */
 public class CaperucitaEnvironmentState extends EnvironmentState {
 
+	public static final int FILA_INICIAL=5;
+	public static final int COL_INICIAL=10;
+	
     private int[][] world;
     private int[] agentPosition;
     private int[] wolfPosition;
@@ -80,7 +85,7 @@ public class CaperucitaEnvironmentState extends EnvironmentState {
         world[12][6]=CaperucitaPerception.ARBOL_PERCEPTION;
                 
         
-        this.setAgentPosition(new int[]{5, 10});
+        this.setAgentPosition(new int[]{FILA_INICIAL, COL_INICIAL});
         this.setWolfPosition(new int[] {9,4});
        
        //AMBIENTE ALTERNATIVO**********************************************************************************
@@ -121,7 +126,7 @@ public class CaperucitaEnvironmentState extends EnvironmentState {
         world[13][6]=CaperucitaPerception.ARBOL_PERCEPTION;
         
         
-        this.setAgentPosition(new int[]{8, 11});
+        this.setAgentPosition(new int[]{FILA_INICIAL, COL_INICIAL});
         this.setWolfPosition(new int[] {11,5});
         */
 
@@ -172,50 +177,56 @@ public class CaperucitaEnvironmentState extends EnvironmentState {
 
 	public int[] getTopCol(int row, int col) {
 		
-		int vector[]  = new int[TAM];
-		int i=0;
-	
-			while(world[row-1][col] != CaperucitaPerception.ARBOL_PERCEPTION && world.length<TAM) {
-				vector[i]=world[row-1][col];
-				row--;
-			}
+		int vector[]  = new int[row];
+		int j=0;
+		
+		
+		for (int i=row-1; i>=0; i--) {
+			vector[j] = world[i][col];
+			j++;
+		}
 			return vector;
-			
 	}
 
 	public int[] getLeftRow(int row, int col) {
 		
-		int vector[]  = new int[TAM];
-		int i=0;
-	
-			while(world[row][col-1] != CaperucitaPerception.ARBOL_PERCEPTION && world.length<TAM) {
-				vector[i]=world[row][col-1];
-				col--;
-			}
+		int vector[]  = new int[col];
+		int j=0;
+		
+		
+		for (int i=col-1; i>=0; i--) {
+			vector[j] = world[row][j];
+			j++;
+		}
 			return vector;
+	
 	}
 
 	public int[] getRightRow(int row, int col) {
-		int vector[]  = new int[TAM];
-		int i=0;
-	
-			while(world[row][col+1] != CaperucitaPerception.ARBOL_PERCEPTION && world.length<TAM) {
-				vector[i]=world[row][col+1];
-				col++;
-			}
+		int vector[]  = new int[TAM - col-1];
+		int j=0;
+		
+		
+		for (int i=col+1 ;i<TAM ;i++) {
+			vector[j] = world[row][i];
+			j++;
+		}
 			return vector;
+	
 	}
 
 	public int[] getBottomCol(int row, int col) {
 		
-		int vector[]  = new int[TAM];
-		int i=0;
-	
-			while(world[row+1][col] != CaperucitaPerception.ARBOL_PERCEPTION && world.length<TAM) {
-				vector[i]=world[row+1][col];
-				row++;
-			}
+		int vector[]  = new int[TAM -row-1];
+		int j=0;
+		
+		
+		for (int i=row+1; i<TAM; i++) {
+			vector[j] = world[i][col];
+			j++;
+		}
 			return vector;
+	
 	}
 
 
@@ -249,6 +260,30 @@ public class CaperucitaEnvironmentState extends EnvironmentState {
 
 	public void setPositionDulces(int[] positionDulces) {
 		this.positionDulces = positionDulces;
+	}
+
+	public void newWolfPosition() {
+		
+		int posViejaLobo[]= new int[2];
+		posViejaLobo = this.getWolfPosition();
+		        
+        //desplazamiento aleatorio del lobo en posicion vacia o donde esta caperucita
+        int[][] ambiente = this.getWorld();
+        int filaLobo=0;
+        int columnaLobo=0;
+        
+        while(!(ambiente[filaLobo][columnaLobo] == CaperucitaPerception.EMPTY_PERCEPTION)){
+        	
+	        filaLobo = (int) (Math.random() * CaperucitaEnvironmentState.TAM -1);
+	        columnaLobo = (int) (Math.random() * CaperucitaEnvironmentState.TAM -1);
+        }
+        
+        //actualizo el vector de posicion del lobo
+        this.setWolfPosition(new int []{filaLobo, columnaLobo}); 
+        
+        //actualizo el mundo del estado del ambiente con la posicion del lobo
+        this.setWorld(this.getWolfPosition()[0], this.getWolfPosition()[1], CaperucitaPerception.ENEMY_PERCEPTION);
+        this.setWorld(posViejaLobo[0], posViejaLobo[1 ], CaperucitaPerception.EMPTY_PERCEPTION);		
 	}
 
 }

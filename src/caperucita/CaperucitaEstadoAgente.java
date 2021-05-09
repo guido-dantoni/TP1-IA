@@ -17,7 +17,7 @@ public class CaperucitaEstadoAgente extends SearchBasedAgentState {
     private int[] initialPosition;
     private int[] wolfPosition;
     private int celdasVisitadas;
-	
+	private int[][] mapaAmbiente;
 
      
     public CaperucitaEstadoAgente(int[][] m, int row, int col, int lifes, int[] lobo) {
@@ -78,40 +78,22 @@ public class CaperucitaEstadoAgente extends SearchBasedAgentState {
 	@Override
 	public void updateState(Perception p) {
 		CaperucitaPerception caperucitaPerception = (CaperucitaPerception) p;
-		CaperucitaEstadoAgente caperucitaEstado = new CaperucitaEstadoAgente();
-		CaperucitaEnvironmentState estadoAmbiente = new CaperucitaEnvironmentState();
 		
-			
-        //si el lobo cae en l posicion de caperucita se la morfa y capeucita arranca en la pos inicial
-        if(Arrays.equals(estadoAmbiente.getWolfPosition(),caperucitaEstado.getPosicionActual())) {
-        	
-        	this.cantVidas--;        
-        	caperucitaEstado.setPosicionActual(caperucitaEstado.getInitialPosition()[0], caperucitaEstado.getInitialPosition()[1]);
-      
-        }
-        
-        //desplazamiento aleatorio del lobo en posicion vacia o donde esta caperucita
-        int[][] ambiente = estadoAmbiente.getWorld();
-        int filaLobo=0;
-        int columnaLobo=0;
-        
-        while(!(ambiente[filaLobo][columnaLobo] == CaperucitaPerception.EMPTY_PERCEPTION)){
-        	
-	        filaLobo = (int) (Math.random() * CaperucitaEnvironmentState.TAM -1);
-	        columnaLobo = (int) (Math.random() * CaperucitaEnvironmentState.TAM -1);
-        }
-        //actualiza el mundo del estado de agentecon la nueva posicion del lobo
-        this.setWorldPosition(this.getWolfPosition()[0], this.getWolfPosition()[1], CaperucitaPerception.EMPTY_PERCEPTION);
-        this.setWorldPosition(filaLobo, columnaLobo, CaperucitaPerception.ENEMY_PERCEPTION);
-        
-        //actualizo el vector de posicion del lobo
-        this.setWolfPosition(new int []{filaLobo, columnaLobo}); 
-        
-        //actualizo el mundo del estado del ambiente con la posicion del lobo
-        estadoAmbiente.setWorld(estadoAmbiente.getWolfPosition()[0], estadoAmbiente.getWolfPosition()[1], CaperucitaPerception.EMPTY_PERCEPTION);
-        estadoAmbiente.setWolfPosition(new int []{filaLobo, columnaLobo}); 
+
+		int fila = this.getFilaPosicion();
+	    int col = this.getColumnaPosicion();
+	    this.resetMapaAgente();  
+	    
+	    this.actualizarMapaArriba(fila, col, caperucitaPerception);
+	    this.actualizarMapaAbajo(fila, col, caperucitaPerception);
+	    this.actualizarMapaDerecha(fila, col, caperucitaPerception);
+	    this.actualizarMapaIzquierda(fila, col, caperucitaPerception);
+	    
+		
         		
 	}
+
+
 
 	@Override
 	public String toString() {
@@ -121,9 +103,9 @@ public class CaperucitaEstadoAgente extends SearchBasedAgentState {
        
 
         str = str + "world=\"[ \n";
-        for (int row = 0; row < world.length; row++) {
+        for (int row = 0; row < TAM; row++) {
             str = str + "[ ";
-            for (int col = 0; col < world.length; col++) {
+            for (int col = 0; col < TAM; col++) {
                 if (world[row][col] == -1) {
                     str = str + "* ";
                 } else {
@@ -144,13 +126,34 @@ public class CaperucitaEstadoAgente extends SearchBasedAgentState {
 		
 		CaperucitaEnvironmentState estadoAmbiente = new CaperucitaEnvironmentState();
 		estadoAmbiente.initState();
-		this.setWorld(estadoAmbiente.getWorld());
+		
+		this.setMapaAmbiente(estadoAmbiente.getWorld());
+
+		this.resetMapaAgente();
+		
+		//this.setWorld(estadoAmbiente.getWorld());
 		this.setInitialPosition(estadoAmbiente.getAgentPosition());
 		this.setPosicionActual(estadoAmbiente.getAgentPosition()[0],estadoAmbiente.getAgentPosition()[1]) ;
 		this.setWolfPosition(estadoAmbiente.getWolfPosition());
 		
 	}
 	
+	private void resetMapaAgente() {
+		
+		for (int fila = 0; fila < TAM; fila++) {
+            for (int col = 0; col < TAM; col++) {
+                world[fila][col] = -1;
+                if (mapaAmbiente[fila][col]==CaperucitaPerception.SALIDA) {
+                	world[fila][col] = CaperucitaPerception.SALIDA;
+                }
+                if (mapaAmbiente[fila][col]==CaperucitaPerception.ARBOL_PERCEPTION) {
+                	world[fila][col] = CaperucitaPerception.ARBOL_PERCEPTION;
+                }   
+            }
+        }
+		
+	}
+
 	public int[] getPosicionActual() {
 		return posicionActual;
 	}
@@ -254,5 +257,54 @@ public class CaperucitaEstadoAgente extends SearchBasedAgentState {
 		}
 		return null;
 	}
+	
+	private void actualizarMapaIzquierda(int fila, int col, CaperucitaPerception p) {
+		
+		int j=p.getLeftSensor().length-1;
+		
+		for (int i=col-1; i>=0; i--) {
+			world[fila][i] = p.getLeftSensor()[j];
+			j--;
+		}
+		
+	}
+
+	private void actualizarMapaDerecha(int fila, int col, CaperucitaPerception p) {
+	
+		int j=0;
+		for (int i=col+1; i<TAM; i++) {
+			world[fila][i] = p.getRightSensor()[j];
+			j++;
+		}
+		
+	}
+
+	private void actualizarMapaAbajo(int fila, int col, CaperucitaPerception p){
+		
+		int j=0;
+		for (int i=fila+1; i< TAM; i++) {
+			world[i][col] = p.getBottomSensor()[j];
+			j++;
+		}
+		
+	}
+
+	private void actualizarMapaArriba(int fila, int col, CaperucitaPerception p) {
+		int j=0;
+	    for (int i=fila-1; i>=0; i--) {
+		world[i][col] = p.getTopSensor()[j];
+		j++;
+		}
+		
+	}
+
+	public int[][] getMapaAmbiente() {
+		return mapaAmbiente;
+	}
+
+	public void setMapaAmbiente(int[][] mapaAmbiente) {
+		this.mapaAmbiente = mapaAmbiente;
+	}
+
 
 }

@@ -65,6 +65,7 @@ public abstract class GoalBasedAgentSimulator extends Simulator {
         GoalBasedAgent agent;
 
         agent = (GoalBasedAgent) this.getAgents().firstElement();
+        
 
         /*
          * Simulation starts. The environment sends perceptions to the agent, and
@@ -81,6 +82,8 @@ public abstract class GoalBasedAgentSimulator extends Simulator {
             System.out.println("Perception: " + perception);
 
             System.out.println("Agent State: " + agent.getAgentState());
+            System.out.println("cantidad de dulces: " + ((CaperucitaEstadoAgente) agent.getAgentState()).getCantDulces());
+            System.out.println("cantidad de vidas: " + ((CaperucitaEstadoAgente) agent.getAgentState()).getVidas());
             System.out.println("Environment: " + environment);
 
             System.out.println("Asking the agent for an action...");
@@ -89,7 +92,7 @@ public abstract class GoalBasedAgentSimulator extends Simulator {
             if (action == null) {
                 break;
             }
-            this.hayComida(action, agent);
+          //  this.hayComida(action, agent);
             System.out.println("Action returned: " + action);
             System.out.println();
 
@@ -118,12 +121,12 @@ public abstract class GoalBasedAgentSimulator extends Simulator {
         // Launch simulationFinished event
         SimulatorEventNotifier.runEventHandlers(EventType.SimulationFinished, null);
     }
-
+/*
     private void hayComida(Action a, Agent agente) {
     	
     		CaperucitaEstadoAgente caperucitaEstado= (CaperucitaEstadoAgente) ((GoalBasedAgent) agente).getAgentState();
     		int ambiente[][] = new int[CaperucitaEstadoAgente.TAM][CaperucitaEstadoAgente.TAM];
-    		ambiente= caperucitaEstado.getWorld();
+    		ambiente= caperucitaEstado.getMapaAmbiente();
     		int x = caperucitaEstado.getFilaPosicion();
     	    int y = caperucitaEstado.getColumnaPosicion();
     		
@@ -153,6 +156,7 @@ public abstract class GoalBasedAgentSimulator extends Simulator {
     	        return;
     		}else if(a instanceof IrDerecha) {
    	        while(ambiente[x][y+1] != CaperucitaPerception.ARBOL_PERCEPTION){
+   	        	 
    	        	
     	        	if(ambiente[x][y] == CaperucitaPerception.FOOD_PERCEPTION){
     	        		caperucitaEstado.setWorldPosition(x, y, CaperucitaPerception.EMPTY_PERCEPTION);
@@ -177,7 +181,7 @@ public abstract class GoalBasedAgentSimulator extends Simulator {
     		}
     				
 	}
-
+*/
 	/**
      * Here we update the state of the agent and the real state of the
      * simulator.
