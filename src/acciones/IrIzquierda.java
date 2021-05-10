@@ -32,7 +32,7 @@ public class IrIzquierda extends SearchAction {
         	if(ambiente[x][y] == CaperucitaPerception.ENEMY_PERCEPTION) {
         		int[] i = {x,y};
         		caperucitaEstado.setWolfPosition(i);
-        		caperucitaEstado.cantVidas--;
+        	
         	}
         	caperucitaEstado.setPosicionActual(x,y-1);
         	visitedCells++;
@@ -81,8 +81,12 @@ public class IrIzquierda extends SearchAction {
         	if(ambiente[x][y] == CaperucitaPerception.ENEMY_PERCEPTION) {
         		int[] i = {x,y};
         		estadoAmbiente.setWolfPosition(i);
-        		caperucitaEstado.setWolfPosition(i);
-        		
+        		//caperucitaEstado.setWolfPosition(i);
+        		estadoAmbiente.setCantVidas(estadoAmbiente.getCantVidas()-1);
+        		estadoAmbiente.setAgentPosition(caperucitaEstado.getInitialPosition());
+        		caperucitaEstado.setPosicionActual(caperucitaEstado.getInitialPosition()[0], caperucitaEstado.getInitialPosition()[1]);
+        		CaperucitaEstadoAgente.cantVidas--;
+            	return estadoAmbiente;
         	}
         	visitedCells++;
         	estadoAmbiente.setAgentPosition(new int[] {x, y-1});

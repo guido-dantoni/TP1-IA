@@ -10,9 +10,7 @@ import frsf.cidisi.faia.state.EnvironmentState;
  */
 public class CaperucitaEnvironmentState extends EnvironmentState {
 
-	public static final int FILA_INICIAL=5;
-	public static final int COL_INICIAL=10;
-	
+
     private int[][] world;
     private int[] agentPosition;
     private int[] wolfPosition;
@@ -85,7 +83,7 @@ public class CaperucitaEnvironmentState extends EnvironmentState {
         world[12][6]=CaperucitaPerception.ARBOL_PERCEPTION;
                 
         
-        this.setAgentPosition(new int[]{FILA_INICIAL, COL_INICIAL});
+        this.setAgentPosition(new int[]{5, 10});
         this.setWolfPosition(new int[] {9,4});
        
        //AMBIENTE ALTERNATIVO**********************************************************************************
@@ -126,7 +124,7 @@ public class CaperucitaEnvironmentState extends EnvironmentState {
         world[13][6]=CaperucitaPerception.ARBOL_PERCEPTION;
         
         
-        this.setAgentPosition(new int[]{FILA_INICIAL, COL_INICIAL});
+        this.setAgentPosition(new int[]{5, 10});
         this.setWolfPosition(new int[] {11,5});
         */
 

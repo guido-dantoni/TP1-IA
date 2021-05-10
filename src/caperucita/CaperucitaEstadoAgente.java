@@ -16,7 +16,7 @@ public class CaperucitaEstadoAgente extends SearchBasedAgentState {
     private int[] posicionActual;
     private int[] initialPosition;
     private int[] wolfPosition;
-    private int celdasVisitadas;
+    private double celdasVisitadas;
 	private int[][] mapaAmbiente;
 
      
@@ -47,10 +47,11 @@ public class CaperucitaEstadoAgente extends SearchBasedAgentState {
 		boolean col = ((CaperucitaEstadoAgente) obj).getColumnaPosicion() == this.getColumnaPosicion();
 		boolean vidas = ((CaperucitaEstadoAgente) obj).getVidas() == this.getVidas();
 		boolean comida = ((CaperucitaEstadoAgente) obj).getCantDulces() == this.getCantDulces();
+		//boolean celdas = ((CaperucitaEstadoAgente) obj).getVisitedCellsCount() == this.getVisitedCellsCount();
 		//boolean filaLobo = ((CaperucitaEstadoAgente) obj).getWolfPosition()[0]==this.getWolfPosition()[0];
 		//boolean colLobo = ((CaperucitaEstadoAgente) obj).getWolfPosition()[1]==this.getWolfPosition()[1];
 		
-		return (fila && col && vidas && comida /*&& filaLobo && colLobo*/);
+		return (fila && col && vidas && comida /*&& celdas && filaLobo && colLobo*/);
 	}
 
 
@@ -89,7 +90,6 @@ public class CaperucitaEstadoAgente extends SearchBasedAgentState {
 	    this.actualizarMapaDerecha(fila, col, caperucitaPerception);
 	    this.actualizarMapaIzquierda(fila, col, caperucitaPerception);
 	    
-		
         		
 	}
 
@@ -132,7 +132,7 @@ public class CaperucitaEstadoAgente extends SearchBasedAgentState {
 		this.resetMapaAgente();
 		
 		//this.setWorld(estadoAmbiente.getWorld());
-		this.setInitialPosition(estadoAmbiente.getAgentPosition());
+		this.setInitialPosition(new int[] {5,10});
 		this.setPosicionActual(estadoAmbiente.getAgentPosition()[0],estadoAmbiente.getAgentPosition()[1]) ;
 		this.setWolfPosition(estadoAmbiente.getWolfPosition());
 		

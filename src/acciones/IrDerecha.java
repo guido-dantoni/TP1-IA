@@ -21,6 +21,7 @@ public class IrDerecha extends SearchAction {
         int y = caperucitaEstado.getColumnaPosicion();
         int visitedCells=0;
 
+        boolean flag=false;
         int[][] ambiente = caperucitaEstado.getWorld();
         
         while(ambiente[x][y+1] != CaperucitaPerception.ARBOL_PERCEPTION && y<CaperucitaEnvironmentState.TAM - 1){
@@ -31,16 +32,21 @@ public class IrDerecha extends SearchAction {
         	if(ambiente[x][y] == CaperucitaPerception.ENEMY_PERCEPTION) {
         		int[] i = {x,y};
         		caperucitaEstado.setWolfPosition(i);
-        		return null;
+
+ 
         	}
         	caperucitaEstado.setPosicionActual(x,y+1);
         	visitedCells++;
         	y++;
-
+        	flag=true;
         }
         
         caperucitaEstado.increaseVisitedCellsCount(visitedCells);
-		return caperucitaEstado;
+		if(flag){
+			return caperucitaEstado;
+		}else {
+			return null;
+		}
 		
 	}
 
@@ -60,6 +66,7 @@ public class IrDerecha extends SearchAction {
         int y = pos[1];
         int visitedCells=0;
 
+        boolean flag=false;
         //desplazamiento de caperucita
         int[][] ambiente = estadoAmbiente.getWorld();
         
@@ -73,17 +80,26 @@ public class IrDerecha extends SearchAction {
         	if(ambiente[x][y] == CaperucitaPerception.ENEMY_PERCEPTION) {
         		int[] i = {x,y};
         		estadoAmbiente.setWolfPosition(i);
-        		caperucitaEstado.setWolfPosition(i);
-        		return null;
+        		//caperucitaEstado.setWolfPosition(i);
+        		estadoAmbiente.setCantVidas(estadoAmbiente.getCantVidas()-1);
+        		estadoAmbiente.setAgentPosition(caperucitaEstado.getInitialPosition());
+        		caperucitaEstado.setPosicionActual(caperucitaEstado.getInitialPosition()[0], caperucitaEstado.getInitialPosition()[1]);
+        		CaperucitaEstadoAgente.cantVidas--;
+    			return estadoAmbiente;
         	}
         	visitedCells++;
         	estadoAmbiente.setAgentPosition(new int[] {x, y+1});
         	caperucitaEstado.setPosicionActual(x,y+1);
         	y++;
+        	flag=true;
         }
             
         caperucitaEstado.increaseVisitedCellsCount(visitedCells);
-		return estadoAmbiente;
+		if(flag) {
+			return estadoAmbiente;
+		}else{
+			return null;
+		}
 		
 	}
 	
