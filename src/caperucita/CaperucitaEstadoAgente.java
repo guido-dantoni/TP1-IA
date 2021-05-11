@@ -20,14 +20,14 @@ public class CaperucitaEstadoAgente extends SearchBasedAgentState {
 	private int[][] mapaAmbiente;
 
      
-    public CaperucitaEstadoAgente(int[][] m, int row, int col, int lifes, int[] lobo) {
+    public CaperucitaEstadoAgente(int[][] m, int row, int col, int lifes, int[] lobo, double celdas) {
         world = m;
         posicionActual = new int[] {row, col};
         initialPosition = new int[2];
         initialPosition[0] = row;
         initialPosition[1] = col;
         cantVidas=lifes;
-        celdasVisitadas=0;
+        celdasVisitadas=celdas;
         wolfPosition = lobo;
         
     }
@@ -37,6 +37,7 @@ public class CaperucitaEstadoAgente extends SearchBasedAgentState {
         initialPosition = new int[2];
         posicionActual = new int[2];
         wolfPosition= new int[2];
+        celdasVisitadas=0;
         this.initState();
     }
 
@@ -47,11 +48,11 @@ public class CaperucitaEstadoAgente extends SearchBasedAgentState {
 		boolean col = ((CaperucitaEstadoAgente) obj).getColumnaPosicion() == this.getColumnaPosicion();
 		boolean vidas = ((CaperucitaEstadoAgente) obj).getVidas() == this.getVidas();
 		boolean comida = ((CaperucitaEstadoAgente) obj).getCantDulces() == this.getCantDulces();
-		//boolean celdas = ((CaperucitaEstadoAgente) obj).getVisitedCellsCount() == this.getVisitedCellsCount();
+		boolean celdas = ((CaperucitaEstadoAgente) obj).getVisitedCellsCount() == this.getVisitedCellsCount();
 		//boolean filaLobo = ((CaperucitaEstadoAgente) obj).getWolfPosition()[0]==this.getWolfPosition()[0];
 		//boolean colLobo = ((CaperucitaEstadoAgente) obj).getWolfPosition()[1]==this.getWolfPosition()[1];
 		
-		return (fila && col && vidas && comida /*&& celdas && filaLobo && colLobo*/);
+		return (fila && col && vidas && comida && celdas /*&& filaLobo && colLobo*/);
 	}
 
 
@@ -71,7 +72,8 @@ public class CaperucitaEstadoAgente extends SearchBasedAgentState {
 	        newPosition[1] = posicionActual[1];
 
 	        CaperucitaEstadoAgente newState = new CaperucitaEstadoAgente(newWorld,
-	        		this.getFilaPosicion(), this.getColumnaPosicion(), CaperucitaEstadoAgente.getVidas(), this.getWolfPosition());
+	        		this.getFilaPosicion(), this.getColumnaPosicion(), CaperucitaEstadoAgente.getVidas(), this.getWolfPosition(),
+	        		this.getVisitedCellsCount());
 
 	        return newState;
 	}
@@ -132,7 +134,7 @@ public class CaperucitaEstadoAgente extends SearchBasedAgentState {
 		this.resetMapaAgente();
 		
 		//this.setWorld(estadoAmbiente.getWorld());
-		this.setInitialPosition(new int[] {5,10});
+		this.setInitialPosition(estadoAmbiente.getAgentPosition());
 		this.setPosicionActual(estadoAmbiente.getAgentPosition()[0],estadoAmbiente.getAgentPosition()[1]) ;
 		this.setWolfPosition(estadoAmbiente.getWolfPosition());
 		
@@ -228,7 +230,7 @@ public class CaperucitaEstadoAgente extends SearchBasedAgentState {
 
 	//a cada celda le ponemos de costo 1, como se mueve de a varias celdas, las incremento en "a" cantidades de celdas
     public void increaseVisitedCellsCount(int a) {
-        this.celdasVisitadas = +a;
+        this.celdasVisitadas += a;
     }
 
     //retorna la distancia en linea recta de la posicion del agente a la salida

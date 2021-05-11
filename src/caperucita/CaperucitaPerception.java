@@ -41,6 +41,8 @@ public class CaperucitaPerception extends Perception{
         int row = estadoAmbiente.getAgentPosition()[0];
         int col = estadoAmbiente.getAgentPosition()[1];
 
+       // estadoAmbiente.setWolfPosition(estadoAmbiente.getWolfPosition());
+       //estadoAmbiente.setWorld(estadoAmbiente.getWolfPosition()[0], estadoAmbiente.getWolfPosition()[1], this.ENEMY_PERCEPTION);
         
         this.setTopSensor(caperucitaBosque.getTopCol(row, col));
         this.setLeftSensor(caperucitaBosque.getLeftRow(row, col));

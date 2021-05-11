@@ -105,6 +105,7 @@ public abstract class GoalBasedAgentSimulator extends Simulator {
             System.out.println("Agent has reached the goal!");
             System.out.println("cantidad de dulces: " + ((CaperucitaEstadoAgente) agent.getAgentState()).getCantDulces());
             System.out.println("cantidad de vidas: " + ((CaperucitaEstadoAgente) agent.getAgentState()).getVidas());
+            System.out.println("costo: " + ((CaperucitaEstadoAgente) agent.getAgentState()).getVisitedCellsCount());
             
         } else {
             System.out.println("ERROR: The simulation has finished, but the agent has not reached his goal.");

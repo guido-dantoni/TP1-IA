@@ -86,6 +86,7 @@ public class IrIzquierda extends SearchAction {
         		estadoAmbiente.setAgentPosition(caperucitaEstado.getInitialPosition());
         		caperucitaEstado.setPosicionActual(caperucitaEstado.getInitialPosition()[0], caperucitaEstado.getInitialPosition()[1]);
         		CaperucitaEstadoAgente.cantVidas--;
+        		caperucitaEstado.increaseVisitedCellsCount(50);
             	return estadoAmbiente;
         	}
         	visitedCells++;

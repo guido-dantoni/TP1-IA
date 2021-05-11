@@ -84,6 +84,7 @@ public class IrDerecha extends SearchAction {
         		estadoAmbiente.setCantVidas(estadoAmbiente.getCantVidas()-1);
         		estadoAmbiente.setAgentPosition(caperucitaEstado.getInitialPosition());
         		caperucitaEstado.setPosicionActual(caperucitaEstado.getInitialPosition()[0], caperucitaEstado.getInitialPosition()[1]);
+        		caperucitaEstado.increaseVisitedCellsCount(50);
         		CaperucitaEstadoAgente.cantVidas--;
     			return estadoAmbiente;
         	}

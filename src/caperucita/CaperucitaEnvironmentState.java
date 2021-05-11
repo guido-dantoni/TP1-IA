@@ -60,7 +60,7 @@ public class CaperucitaEnvironmentState extends EnvironmentState {
         	world[13][i]=CaperucitaPerception.ARBOL_PERCEPTION; // fila 13
         }
       //Ambiente 1 **************************************************************************************
-        
+        /*
         world[12][7] = CaperucitaPerception.SALIDA;
         world[13][7] = CaperucitaPerception.SALIDA;
         world[9][4] = CaperucitaPerception.ENEMY_PERCEPTION;
@@ -84,14 +84,14 @@ public class CaperucitaEnvironmentState extends EnvironmentState {
                 
         
         this.setAgentPosition(new int[]{5, 10});
-        this.setWolfPosition(new int[] {9,4});
+        this.setWolfPosition(new int[] {9,4});*/
        
        //AMBIENTE ALTERNATIVO**********************************************************************************
-        /* 
+         
         world[4][11] = CaperucitaPerception.SALIDA;
         world[4][12] = CaperucitaPerception.SALIDA;
         world[4][13] = CaperucitaPerception.SALIDA;
-        world[11][5] = CaperucitaPerception.ENEMY_PERCEPTION;
+        world[3][9] = CaperucitaPerception.ENEMY_PERCEPTION;
         world[1][9] = CaperucitaPerception.FOOD_PERCEPTION;
         world[2][11] = CaperucitaPerception.FOOD_PERCEPTION;
         world[9][9] = CaperucitaPerception.FOOD_PERCEPTION;
@@ -124,9 +124,9 @@ public class CaperucitaEnvironmentState extends EnvironmentState {
         world[13][6]=CaperucitaPerception.ARBOL_PERCEPTION;
         
         
-        this.setAgentPosition(new int[]{5, 10});
-        this.setWolfPosition(new int[] {11,5});
-        */
+        this.setAgentPosition(new int[]{5, 9});
+        this.setWolfPosition(new int[] {3,9});
+        
 
     }
 
